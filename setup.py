@@ -3,11 +3,12 @@
 from setuptools import setup
 
 setup(
-    name='YourAppName',
+    name='talli.fi',
     version='1.0',
-    description='OpenShift App',
-    author='Your Name',
-    author_email='example@example.com',
-    url='http://www.python.org/sigs/distutils-sig/',
-    install_requires=['Django<=1.4'],
+    description='Multitenant django-stables provider',
+    author='Juho Rutila',
+    author_email='juho.rutila@iki.fi',
+    url='',
+    install_requires=[ 'Django==1.5', 'django-tenant-schemas', 'South==0.8.1', 'django-reusableapps==0.1.1', 'djangorestframework', 'django-grappelli' ],
+    zip_ok=False,
 )

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for openshift project.
 import imp, os
+import sys
 
 # a setting to determine whether we are running on OpenShift
 ON_OPENSHIFT = False
@@ -12,32 +13,35 @@ if ON_OPENSHIFT:
     DEBUG = False
 else:
     DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
 
+AUTH_PROFILE_MODULE = 'stables.UserProfile'
+
 if ON_OPENSHIFT:
     # os.environ['OPENSHIFT_MYSQL_DB_*'] variables can be used with databases created
     # with rhc cartridge add (see /README in this git repo)
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': os.path.join(os.environ['OPENSHIFT_DATA_DIR'], 'sqlite3.db'),  # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'tenant_schemas.postgresql_backend', 
+            'NAME': 'talli',
+            'USER': os.environ.get('OPENSHIFT_POSTGRESQL_DB_USERNAME'),
+            'PASSWORD': os.environ.get('OPENSHIFT_POSTGRESQL_DB_PASSWORD'),
+            'HOST': '',
+            'PORT': '',
         }
     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': os.path.join(PROJECT_DIR, 'sqlite3.db'),  # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
+            #'ENGINE': 'tenant_schemas.postgresql_backend', 
+            'ENGINE': 'tenant_schemas.postgresql_backend'
+                if not 'test' in sys.argv else 'django.db.backends.sqlite3',
+            'NAME': 'talli',
+            'USER': 'hepokoti',                      # Not used with sqlite3.
             'PASSWORD': '',                  # Not used with sqlite3.
             'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
@@ -51,11 +55,11 @@ else:
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Helsinki'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fi'
 
 SITE_ID = 1
 
@@ -127,14 +131,18 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'middleware.LoginRequiredMiddleware',
 )
 
-ROOT_URLCONF = 'openshift.urls'
+#ROOT_URLCONF = 'openshift.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -143,18 +151,72 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+    "django.core.context_processors.static",
+    'django.contrib.messages.context_processors.messages',
+
+    'sekizai.context_processors.sekizai',
 )
+
+LOGIN_REDIRECT_URL = '/'
+
+SHARED_APPS = (
+    'tenant',
+
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.sites',
+
+    'south',
+    'tenant_schemas',
+
+    'mptt',
+    'rest_framework',
+    'sekizai',
+    'crispy_forms',
+)
+
+TENANT_APPS = (
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.sites',
+
+    'grappelli.dashboard',
+    'grappelli',
+
+    'south',
+
+    'filer',
+    'stables',
+    'schedule',
+    'reversion',
+    'taggit',
+    'reporting',
+)
+
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
+if 'test' in sys.argv:
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']
+
+TENANT_MODEL = 'tenant.Client'
+
+SOUTH_DATABASE_ADAPTERS = {
+    'default': 'south.db.postgresql_psycopg2',
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
