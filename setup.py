@@ -11,6 +11,7 @@ setup(
     url='',
     install_requires=[ 'Django==1.5', 'django-tenant-schemas', 'South==0.8.1', 'django-reusableapps==0.1.1', 'djangorestframework', 'django-grappelli', 'django-stables==dev', 'django-compressor' ],
     zip_ok=False,
+    zip_safe=False,
     dependency_links = [
         "https://api.github.com/repos/jrutila/django-stables/tarball/multitenant?access_token=30e539ba9491700b201ccbeda82b8cb722c4064c#egg=django-stables-dev"
     ]
