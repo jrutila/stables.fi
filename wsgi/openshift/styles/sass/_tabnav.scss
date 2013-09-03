@@ -1,0 +1,35 @@
+@import "blueprint/buttons";
+@import "compass/css3";
+
+@mixin tabs {
+  background: transparent;
+  margin: 0 auto;
+  height: $navHeight+10px;
+  li {
+      float: left;
+      width: $navHeight * 1.2;
+      margin-right: 5px;
+      border-left: 1px solid black;
+      border-top: 1px solid black;
+      border-right: 1px solid black;
+      @include border-top-right-radius();
+      @include border-top-left-radius();
+      background-color: nth($primary, 3);
+      padding-bottom: 1px;
+    a {
+        height: $navHeight;
+        width: $navHeight;
+        //line-height: $navHeight;
+        //padding: 0 20px;
+        border-radius: 3px 3px 0 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        display: block;
+    }
+    &.active, a.active {
+        background-color: nth($primary, 5);
+    }
+  }
+}

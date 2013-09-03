@@ -1,0 +1,48 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "_base.scss";
+
+$navHeight: 64px;
+$navMargin: 50px;
+
+body {
+    //@include showgrid();
+    //@include column(8);
+    background-color: nth($secondary, 4);
+}
+
+#wrapper
+{
+}
+
+nav {
+    margin-left: $navMargin !important;
+    @include tabs();
+    }
+
+#content {
+    margin-top: -1px;
+    display: inline-block;
+    border: 1px solid black;
+    @include border-radius();
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    min-width: ($navHeight * 6) + ($navMargin * 2);
+    background-color: nth($primary, 5);
+}
+
+footer {
+    width: 100%;
+}
+
+h1 {
+    font-size: bigger;
+}
+
+table {
+    @include alternating-rows-and-columns(nth($secondary, 5), nth($secondary, 4), #111); 
+}

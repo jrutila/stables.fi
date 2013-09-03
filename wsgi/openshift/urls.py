@@ -25,3 +25,6 @@ urlpatterns = patterns('',
 
     url(r'^api/', include(router.urls)),
 )
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

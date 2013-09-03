@@ -1,4 +1,5 @@
 {% load i18n sekizai_tags %}
+{% load compress staticfiles tags %}
 <!doctype html>
 <html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -14,19 +15,33 @@
          Modernizr enables HTML5 elements & feature detects for optimal performance.
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
     <script src="{{ STATIC_URL }}js/modernizr-2.5.3.min.js"></script>
+    {% compress css %}
+    {% block base_css %}
+    <link rel="stylesheet" href="{% static 'stylesheets/screen.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'stylesheets/ie.css' %}" type="text/css"/>
+    {% endblock base_css %}
+    {% endcompress %}
  </head>
  <body>
+  <div id="wrapper">
    {% block body %}
+   <header>This is HTML5 Header</header>
    <nav>
-     <a href="{% url 'list_course' %}">{% trans 'Courses' %}</a>
-     <a href="{% url 'dashboard' %}">{% trans 'Calendar' %}</a>
-     <a href="{% url 'list_horse' %}">{% trans 'Horses' %}</a>
-     <a href="{% url 'reporting-list' %}">{% trans 'Reports' %}</a>
-     <a href="{% url 'user-list' %}">{% trans 'Users' %}</a>
+    <ul>
+        <li {% active request 'dashboard' %}><a href="{% url 'dashboard' %}" class="icons-calendar">{% trans 'Calendar' %}</a></li>
+        <li {% active request 'list_course' %}><a href="{% url 'list_course' %}" class="icons-courses">{% trans 'Courses' %}</a></li>
+        <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}" class="icons-horses">{% trans 'Horses' %}</a></li>
+        <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}" class="icons-reports">{% trans 'Reports' %}</a></li>
+        <li {% active request 'user-list' %}><a href="{% url 'user-list' %}" class="icons-users">{% trans 'Users' %}</a></li>
+    </ul>
    </nav>
+   <div id="content">
    {% block content %}
    {% endblock content %}
+   </div>
+   <footer>This is HTML5 Footer</footer>
    {% endblock body %}
+  </div>
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>

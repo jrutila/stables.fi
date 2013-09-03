@@ -1,0 +1,41 @@
+$blueprint-grid-columns: 8;
+$blueprint-grid-width: 100px;
+$blueprint-grid-margin: 10px;
+$font-color: red;
+
+$primary-color: #ff7800;
+$black-value: #333; 
+$cs-scheme: tetrad;
+
+//@import "compass-pattern-primer";
+@import "compass-pattern-primer/reset";
+
+@import "compass-pattern-primer/partials/_mixins";
+@import "compass-pattern-primer/partials/_functions";
+@import "compass-pattern-primer/partials/_variables";
+@import "compass-pattern-primer/partials/_extendables";
+@import "compass-pattern-primer/partials/_colors";
+
+@import "compass-pattern-primer/base/_page";
+//@import "compass-pattern-primer/base/_typography";
+//@import "compass-pattern-primer/base/_links";
+//@import "compass-pattern-primer/base/_forms";
+//@import "compass-pattern-primer/base/_search";
+//@import "compass-pattern-primer/base/_buttons";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3/border-radius";
+@import "compass/utilities/tables/alternating-rows-and-columns";
+
+$default-border-radius: 10px;
+@import "blueprint";
+//@import "blueprint/grid";
+@import "blueprint/debug";
+
+@import "_tabnav.scss";
+
+@import "icons/*.png";
+@include all-icons-sprites;
+
+$tabs: calendar courses horses reports users;
+
