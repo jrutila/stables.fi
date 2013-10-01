@@ -10,7 +10,7 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 if ON_OPENSHIFT:
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
@@ -170,6 +170,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 LOGIN_REDIRECT_URL = '/'
 
 SHARED_APPS = (
+    'tenant_schemas',
     'tenant',
 
     'django.contrib.auth',
@@ -181,7 +182,6 @@ SHARED_APPS = (
     'django.contrib.sites',
 
     'south',
-    'tenant_schemas',
 
     'mptt',
     'rest_framework',

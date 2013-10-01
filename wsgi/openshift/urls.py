@@ -5,10 +5,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 from rest_framework import routers
-from stables.api import ParticipationViewSet
+#from stables.api import ParticipationViewSet
 
-router = routers.DefaultRouter()
-router.register(r'participations', ParticipationViewSet)
+#router = routers.DefaultRouter()
+#router.register(r'participations', ParticipationViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^api/', include(router.urls)),
+    #url(r'^api/', include(router.urls)),
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

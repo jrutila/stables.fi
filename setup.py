@@ -9,7 +9,7 @@ setup(
     author='Juho Rutila',
     author_email='juho.rutila@iki.fi',
     url='',
-    install_requires=[ 'Django==1.5', 'django-tenant-schemas', 'django-reusableapps==0.1.1', 'djangorestframework', 'django-grappelli', 'django-stables==dev', 'django-compressor' ],
+    install_requires=[ 'Django==1.5', 'django-tenant-schemas', 'django-reusableapps==0.1.1', 'djangorestframework', 'django-grappelli', 'django-stables==dev', 'django-compressor', 'South', 'django-mptt' ],
     zip_ok=False,
     zip_safe=False,
     dependency_links = [
