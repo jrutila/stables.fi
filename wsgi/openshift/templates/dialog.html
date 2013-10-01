@@ -1,15 +1,2 @@
-{% extends "base.html" %}
-
-{% load i18n sekizai_tags %}
-{% load compress staticfiles tags %}
-
-{% block base_css %}
-<link rel="stylesheet" href="{% static 'stylesheets/dialog.css' %}" type="text/css"/>
-{% endblock base_css %}
-
-{% block body %}
-<div id="content">
 {% block content %}
 {% endblock content %}
-</div>
-{% endblock body %}

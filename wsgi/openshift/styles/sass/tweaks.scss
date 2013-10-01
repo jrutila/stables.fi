@@ -1,0 +1,34 @@
+$include-html-global-classes: false;
+
+@import "foundation/_variables";
+@import "foundation/components/_global";
+@import "foundation/components/_block-grid";
+
+/* This controls how many elements will be on each row of the block grid. */
+/* Set this to whatever number you need, up to the max allowed in the variable */
+$per-row: false;
+
+/* This controls how much space is between each item in the block grid */
+$spacing: 30;
+//$block-grid-default-spacing
+
+/* This controls whether or not base styles come through, set to false to leave out */
+/* This is handy for when you create multiple block-grids and want less CSS output repetition */
+$base-styles: true;
+
+
+/* Mixin and configurable options */
+.list-grid
+{
+    @include block-grid($per-row, $spacing, $base-styles);
+}
+
+.list-grid > li
+{
+    height: 60px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+@import "navicon/*.png";
+@include all-navicon-sprites;

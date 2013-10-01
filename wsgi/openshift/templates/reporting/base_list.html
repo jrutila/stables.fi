@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load reporting_tags i18n admin_list %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+{% block result_list %}{% endblock result_list %}
+    </div>
+    <div class="col-md-4">
+    {% if report.has_filters %}
+                    {% if report.grouper.has_output %}
+                        <div class="widget">
+                            {% report_grouping report %}
+                        </div>
+                    {% endif %}
+            <div id="changelist-filter" class="widget">
+                <div class="widget-header">
+                    <i class=""></i>
+                    <h3>{% trans 'Filter' %}</h3>
+                </div>
+                <div class="widget-content">
+                    {% for spec in report.filter_specs %}{% admin_list_filter report spec %}{% endfor %}
+                </div>
+            </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "reporting/base.html" %}
+{% load i18n static %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="widget">
+    <div class="widget-header"><i class="icon-bar-chart"></i><h3>{% trans 'Reports' %}</h3></div>
+    <div class="widget-content">
+        <ul class="list-group">
+    {% for slug, report in reports %}
+    <li class="list-group-item"><a href="{% url 'reporting-view' slug %}">{{ report.verbose_name }}</a></li>
+    {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

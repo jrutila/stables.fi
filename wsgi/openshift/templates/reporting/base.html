@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10">
+{% block result_list %}{% endblock result_list %}
+    </div>
+    <div class="col-md-2">
+{% block filters %}{% endblock filters %}
+    </div>
+</div>
+{% endblock content %}

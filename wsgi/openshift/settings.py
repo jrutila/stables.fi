@@ -59,7 +59,7 @@ TIME_ZONE = 'Europe/Helsinki'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fi'
+LANGUAGE_CODE = 'fi-FI'
 
 SITE_ID = 1
 
@@ -135,6 +135,8 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    #'babeldjango.middleware.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -203,11 +205,9 @@ TENANT_APPS = (
 
     'south',
 
-    'filer',
     'stables',
     'schedule',
     'reversion',
-    'taggit',
     'reporting',
 )
 
@@ -221,6 +221,8 @@ TENANT_MODEL = 'tenant.Client'
 SOUTH_DATABASE_ADAPTERS = {
     'default': 'south.db.postgresql_psycopg2',
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
