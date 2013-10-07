@@ -6,3 +6,6 @@ class Client(TenantMixin):
   created_on = models.DateField(auto_now_add=True)
 
   auto_create_schema = True
+
+  def __unicode__(self):
+      return self.name
