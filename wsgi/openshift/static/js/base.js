@@ -8,5 +8,9 @@ $(function () {
         })
         return false
     })
+
+    $(document).ready(function() {
+        $(".wide").parent(".container").removeClass('container').addClass('dashboard-container')
+    })
 });
 

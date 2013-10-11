@@ -71,6 +71,10 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+LOCALE_PATH = (
+  os.path.join(PROJECT_DIR, 'locale')
+)
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
@@ -135,7 +139,8 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # Enable when adding more languages
+    #'django.middleware.locale.LocaleMiddleware',
     #'babeldjango.middleware.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -212,6 +217,9 @@ TENANT_APPS = (
 )
 
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
+if DEBUG:
+    INSTALLED_APPS = INSTALLED_APPS + ('devserver',)
 
 if 'test' in sys.argv:
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']

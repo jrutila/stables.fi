@@ -4,8 +4,10 @@
 {% for item in result_hidden_fields %}{{ item }}{% endfor %}
 </div>
 {% endif %}
+
 {% if results %}
-<div class="results widget">
+<div class="results widget stacked widget-table action-table">
+ <div class="widget-content">
 <table id="result_list" class="table table-bordered">
 <thead>
 <tr>
@@ -34,5 +36,6 @@
 {% endfor %}
 </tbody>
 </table>
+ </div>
 </div>
 {% endif %}

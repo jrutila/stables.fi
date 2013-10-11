@@ -10,7 +10,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
  <head>
   <title>Talli.fi</title>
-  {% render_block "css" %}
     <!-- All JavaScript at the bottom, except this Modernizr build.
          Modernizr enables HTML5 elements & feature detects for optimal performance.
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
@@ -25,21 +24,61 @@
     <link rel="stylesheet" href="{% static 'theme/css/pages/dashboard.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/custom.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'stylesheets/tweaks.css' %}" type="text/css"/>
+<link rel="stylesheet" href="{% static 'theme/css/pages/signin.css' %}" type="text/css"/>
     {% endblock base_css %}
     {% endcompress %}
+    {% render_block "css" %}
  </head>
  <body>
    {% block body %}
-   <header class="navbar">This is HTML5 Header</header>
+   <header class="navbar navbar-inverse">
+       <div class="container">
+           <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                 <span class="sr-only">Toggle navigation</span>
+                   <i class="icon-cog"></i>
+               </button>
+               <a class="navbar-brand" href="/">Stables.fi</a>
+           </div>
+           <div class="collapse navbar-collapse navbar-ex1-collapse">
+             <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li class="dropdown">
+                        <a href="javscript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i>
+                                {{ request.user.first_name }} ({{ request.LANGUAGE_CODE }})
+                                <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+<!--
+                                <li><a href="javascript:;">My Profile</a></li>
+                                <li><a href="javascript:;">My Groups</a></li>
+                                <li class="divider"></li>
+-->
+                            <li><a href="{% url "logout" %} ">{% trans "Logout" %}</a></li>
+                        </ul>
+                </li>
+                {% else %}
+                  <li class="dropdown">
+                      <a href="{% url "login" %}" >
+                        <i class="icon-user"></i>
+                         {% trans "Log in" %}
+                    </a>
+                  </li>
+                {% endif %}
+            </ul>
+          </div>
+       </div>
+   </header>
    <nav class="subnavbar">
     <div class="subnavbar-inner">
     <div class="container">
     <ul class="mainnav">
-        <li {% active request 'dashboard' %}><a href="{% url 'dashboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar' %}</span></a></li>
-        <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses' %}</span></a></li>
-        <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses' %}</span></a></li>
-        <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports' %}</span></a></li>
-        <li {% active request 'user-list' %}><a href="{% url 'user-list' %}"><i class="icon-group"></i><span>{% trans 'Users' %}</span></a></li>
+        <li {% active request 'dashboard' %}><a href="{% url 'dashboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a></li>
+        <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
+        <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
+        <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
+        <li {% active request 'user-list' %}><a href="{% url 'user-list' %}"><i class="icon-group"></i><span>{% trans 'Users'|capfirst %}</span></a></li>
     </ul>
     </div>
     </div>
@@ -68,6 +107,7 @@
   <script src="{{ STATIC_URL }}theme/js/plugins/validate/jquery.validate.js"></script>
   <script src="{{ STATIC_URL }}theme/js/Application.js"></script>
   <script src="{{ STATIC_URL }}js/base.js"></script>
+  <script src="{{ STATIC_URL }}theme/js/demo/signin.js"></script>
   {% render_block "js" %}
  </body>
 </html>
