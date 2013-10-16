@@ -194,6 +194,8 @@ SHARED_APPS = (
     'crispy_forms',
 
     'compressor',
+
+    'backbone_tastypie',
 )
 
 TENANT_APPS = (
