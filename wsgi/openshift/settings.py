@@ -220,7 +220,7 @@ TENANT_APPS = (
 
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS
 
-if DEBUG:
+if not ON_OPENSHIFT:
     INSTALLED_APPS = INSTALLED_APPS + ('devserver',)
 
 if 'test' in sys.argv:
