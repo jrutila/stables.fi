@@ -12,9 +12,8 @@ from rest_framework import routers
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'views.home', name='home'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^s/', include('stables.urls')),
+    url(r'^', include('stables.urls')),
     # url(r'^openshift/', include('openshift.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

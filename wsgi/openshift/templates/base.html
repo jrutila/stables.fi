@@ -38,7 +38,7 @@
                  <span class="sr-only">Toggle navigation</span>
                    <i class="icon-cog"></i>
                </button>
-               <a class="navbar-brand" href="/">Stables.fi</a>
+               <a class="navbar-brand" href="/">{{ request.tenant.name }}</a>
            </div>
            <div class="collapse navbar-collapse navbar-ex1-collapse">
              <ul class="nav navbar-nav navbar-right">
@@ -74,7 +74,7 @@
     <div class="subnavbar-inner">
     <div class="container">
     <ul class="mainnav">
-        <li {% active request 'dashboard' %}><a href="{% url 'dashboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a></li>
+        <li {% active request 'dashboard' %}><a href="{% url 'newboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a></li>
         <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
         <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
         <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
@@ -108,6 +108,7 @@
   <script src="{{ STATIC_URL }}theme/js/Application.js"></script>
   <script src="{{ STATIC_URL }}js/base.js"></script>
   <script src="{{ STATIC_URL }}theme/js/demo/signin.js"></script>
+  <script type="text/javascript">apiUrl="{% url "api_v1_top_level" api_name="v1" %}";</script>
   {% render_block "js" %}
  </body>
 </html>
