@@ -71,7 +71,15 @@ $(function () {
 
     collapseToCurrentWeek($('#dashboard-picker'))
     $('#dashboard-picker').datepicker("option", "selectDate", true );
-    $('#dashboard-picker').datepicker("setDate", new Date(Backbone.history.fragment) );
+    var current_date = new Date(Backbone.history.fragment)
+    if (Backbone.history.fragment == "")
+    {
+        current_date = new Date()
+        var formatted = $.datepicker.formatDate("yy-mm-dd", current_date);
+        dashboard_router.navigate(formatted, {trigger:false});
+    }
+    $('#dashboard-picker').datepicker("setDate", current_date );
+
     $("#dashboard-picker").datepicker($.datepicker.regional[ "fi" ] );
     $(".weekdate-picker .ui-datepicker-title").live("click", function() {
         $(this).parents(".ui-datepicker").find("tbody tr").show()
