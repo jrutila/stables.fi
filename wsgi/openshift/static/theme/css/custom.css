@@ -7,3 +7,31 @@ Last change:	03/25/2013
 Assigned to:	You
 
 -------------------------------------------------------------------*/
+.subnavbar-inner.fluid-height
+{
+    height: auto;
+    height: 121px;
+}
+
+.smalled
+{
+    height: 0px !important;
+}
+
+#dashboard-picker
+{
+    z-index: 999;
+    position: relative;
+}
+
+.ui-datepicker .caret
+{
+    border-top-color: white;
+}
+
+@media (max-width: 768px) {
+    .subnavbar .ui-datepicker {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

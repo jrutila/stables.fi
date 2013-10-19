@@ -16,7 +16,9 @@
     {% compress css %}
     {% block base_css %}
     <link rel="stylesheet" href="{% static 'theme/css/bootstrap.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'theme/css/bootstrap-responsive.min.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'theme/css/base-admin-3-responsive.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/font-awesome.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/ui-lightness/jquery-ui-1.10.0.custom.min.css' %}" type="text/css"/>
     <link href="{{ STATIC_URL }}theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css" rel="stylesheet">
@@ -31,7 +33,7 @@
  </head>
  <body>
    {% block body %}
-   <header class="navbar navbar-inverse">
+   <nav class="navbar navbar-inverse">
        <div class="container">
            <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -69,20 +71,35 @@
             </ul>
           </div>
        </div>
-   </header>
-   <nav class="subnavbar">
+   </nav>
+   <div class="subnavbar">
     <div class="subnavbar-inner">
     <div class="container">
-    <ul class="mainnav">
-        <li {% active request 'dashboard' %}><a href="{% url 'newboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a></li>
-        <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
-        <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
-        <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
-        <li {% active request 'user-list' %}><a href="{% url 'user-list' %}"><i class="icon-group"></i><span>{% trans 'Users'|capfirst %}</span></a></li>
-    </ul>
+        <a href="javascript:;" class="subnav-toggle" data-toggle="collapse" data-target=".subnav-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="icon-reorder"></i>
+       </a>
+       <div class="collapse subnav-collapse">
+        <ul class="mainnav">
+            <li {% active request 'newboard' %}>
+            <a href="{% url 'newboard' %}"><i class="icon-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a>
+            </li>
+                
+            <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
+            <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
+            <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
+            <li {% active request 'user-list' %}><a href="{% url 'user-list' %}"><i class="icon-group"></i><span>{% trans 'Users'|capfirst %}</span></a></li>
+        </ul>
+      </div>
     </div>
     </div>
-   </nav>
+
+    <div class="subnavbar-inner {% ifnotactive request 'newboard' %} smalled collapse {% else %} fluid-height {% endifnotactive %}">
+    <div class="container">
+        <div id="dashboard-picker" class="weekdate-picker"></div>
+    </div>
+    </div>
+   </div>
    <div id="content" class="main">
    <div class="container">
    {% block content %}
@@ -108,7 +125,10 @@
   <script src="{{ STATIC_URL }}theme/js/Application.js"></script>
   <script src="{{ STATIC_URL }}js/base.js"></script>
   <script src="{{ STATIC_URL }}theme/js/demo/signin.js"></script>
-  <script type="text/javascript">apiUrl="{% url "api_v1_top_level" api_name="v1" %}";</script>
+  <script type="text/javascript">
+    apiUrl="{% url "api_v1_top_level" api_name="v1" %}";
+    dashboardUrl="{% url "newboard" %}";
+  </script>
   {% render_block "js" %}
  </body>
 </html>
