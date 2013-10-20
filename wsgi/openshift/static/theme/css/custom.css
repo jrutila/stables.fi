@@ -10,7 +10,7 @@ Assigned to:	You
 .subnavbar-inner.fluid-height
 {
     height: auto;
-    height: 121px;
+    height: 123px;
 }
 
 .smalled
@@ -34,4 +34,10 @@ Assigned to:	You
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+.ui-autocomplete
+{
+    list-style: none;
+    padding-left: 10px;
 }

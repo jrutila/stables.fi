@@ -15,13 +15,13 @@
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
     {% compress css %}
     {% block base_css %}
+    <link rel="stylesheet" href="{% static 'theme/css/ui-lightness/jquery-ui-1.10.0.custom.min.css' %}" type="text/css"/>
+    <link href="{{ STATIC_URL }}theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'theme/css/bootstrap.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/bootstrap-responsive.min.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3-responsive.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/font-awesome.css' %}" type="text/css"/>
-    <link rel="stylesheet" href="{% static 'theme/css/ui-lightness/jquery-ui-1.10.0.custom.min.css' %}" type="text/css"/>
-    <link href="{{ STATIC_URL }}theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'theme/css/pages/dashboard.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/custom.css' %}" type="text/css"/>
