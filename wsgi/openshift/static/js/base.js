@@ -36,16 +36,25 @@ $(function () {
         showOtherMonths: true,
         selectOtherMonths: true,
         showWeek: true,
+        firstDay: 1,
         onSelect: function(dateText, inst) {
             var date = $(this).datepicker('getDate');
             var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
             if (! $(this).datepicker("option", "selectDate"))
             {
-                startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
-                endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+                var firstDay = $(this).datepicker("option", "firstDay")
+                startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + firstDay);
+                endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6 + firstDay);
 
                 selectCurrentWeek(this);
                 collapseToCurrentWeek(this);
+                var formatStart = $.datepicker.formatDate("yy-mm-dd", startDate);
+                var formatEnd = $.datepicker.formatDate("yy-mm-dd", endDate);
+                var fragment = "from"+formatStart+"to"+formatEnd
+                if (typeof dashboard_router != 'undefined')
+                    dashboard_router.navigate(fragment, {trigger:true});
+                else
+                    window.location=dashboardUrl+"#"+fragment
             } else {
                 var formatted = $.datepicker.formatDate("yy-mm-dd", date);
                 if (typeof dashboard_router != 'undefined')
@@ -70,15 +79,19 @@ $(function () {
 
 
     collapseToCurrentWeek($('#dashboard-picker'))
-    $('#dashboard-picker').datepicker("option", "selectDate", true );
-    var current_date = new Date(Backbone.history.fragment)
-    if (Backbone.history.fragment == "")
+    //$('#dashboard-picker').datepicker("option", "selectDate", true );
+
+    if (typeof dashboard_router != 'undefined')
     {
-        current_date = new Date()
-        var formatted = $.datepicker.formatDate("yy-mm-dd", current_date);
-        dashboard_router.navigate(formatted, {trigger:false});
+        var current_date = new Date(Backbone.history.fragment)
+        if (Backbone.history.fragment == "")
+        {
+            current_date = new Date()
+            var formatted = $.datepicker.formatDate("yy-mm-dd", current_date);
+            dashboard_router.navigate(formatted, {trigger:false});
+        }
+        $('#dashboard-picker').datepicker("setDate", current_date );
     }
-    $('#dashboard-picker').datepicker("setDate", current_date );
 
     $("#dashboard-picker").datepicker($.datepicker.regional[ "fi" ] );
     $(".weekdate-picker .ui-datepicker-title").live("click", function() {
