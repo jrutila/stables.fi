@@ -157,6 +157,9 @@ MIDDLEWARE_CLASSES = (
     'middleware.LoginRequiredMiddleware',
 )
 
+MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+INTERNAL_IPS = ('127.0.0.1',)
+
 #ROOT_URLCONF = 'openshift.urls'
 ROOT_URLCONF = 'urls'
 
@@ -228,7 +231,7 @@ TENANT_APPS = (
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS
 
 if not ON_OPENSHIFT:
-    INSTALLED_APPS = INSTALLED_APPS + ('devserver',)
+    INSTALLED_APPS = INSTALLED_APPS + ('devserver', 'debug_toolbar',)
 
 if 'test' in sys.argv:
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']
