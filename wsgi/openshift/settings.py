@@ -157,8 +157,9 @@ MIDDLEWARE_CLASSES = (
     'middleware.LoginRequiredMiddleware',
 )
 
-MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INTERNAL_IPS = ('127.0.0.1',)
+if not ON_OPENSHIFT:
+    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    INTERNAL_IPS = ('127.0.0.1',)
 
 #ROOT_URLCONF = 'openshift.urls'
 ROOT_URLCONF = 'urls'
