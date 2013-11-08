@@ -14,68 +14,32 @@ $(function () {
     })
 
 
-    var selectCurrentWeek = function(that) {
-        window.setTimeout(function () {
-            $(that).find('.ui-datepicker-current-day a').addClass('ui-state-active')
-        }, 1);
-    }
-
     var collapseToCurrentWeek = function(that) {
         window.setTimeout(function () {
-            $(that).find("tbody tr:not(:has(.ui-datepicker-current-day))").hide()
+            $(that).find("tbody tr:not(:has(.ui-state-highlight))").hide()
             var is_caret = $(that).find(".ui-datepicker-title .caret").show()
             if (is_caret.length == 0)
                 $(that).find(".ui-datepicker-year").after("<b class='caret'></b>")
         }, 1);
     }
 
-    var startDate;
-    var endDate;
-
-    $('.weekdate-picker').datepicker( {
+    $('#dashboard-picker').multiDatesPicker({
         showOtherMonths: true,
-        selectOtherMonths: true,
-        showWeek: true,
         firstDay: 1,
+        selectOtherMonths: true,
+        maxPicks: 7,
+        showWeek: true,
         onSelect: function(dateText, inst) {
-            var date = $(this).datepicker('getDate');
-            var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
-            if (! $(this).datepicker("option", "selectDate"))
-            {
-                var firstDay = $(this).datepicker("option", "firstDay")
-                startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + firstDay);
-                endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6 + firstDay);
-
-                selectCurrentWeek(this);
-                collapseToCurrentWeek(this);
-                var formatStart = $.datepicker.formatDate("yy-mm-dd", startDate);
-                var formatEnd = $.datepicker.formatDate("yy-mm-dd", endDate);
-                var fragment = "from"+formatStart+"to"+formatEnd
-                if (typeof dashboard_router != 'undefined')
-                    dashboard_router.navigate(fragment, {trigger:true});
-                else
-                    window.location=dashboardUrl+"#"+fragment
-            } else {
-                var formatted = $.datepicker.formatDate("yy-mm-dd", date);
-                if (typeof dashboard_router != 'undefined')
-                    dashboard_router.navigate(formatted, {trigger:true});
-                else
-                    window.location=dashboardUrl+"#"+formatted
-                collapseToCurrentWeek(this);
-            }
-            //$('#endDate').text($.datepicker.formatDate( dateFormat, endDate, inst.settings ));
+            var dates = inst.dpDiv.parent().multiDatesPicker('getDates', 'object')
+            fragment = _.chain(dates).map(function (dd) { return $.datepicker.formatDate('yy-mm-dd', dd); }).join(',').value()
+            console.log(fragment)
+            if (typeof dashboard_router != 'undefined')
+                dashboard_router.navigate(fragment, {trigger:true});
+            else
+                window.location=dashboardUrl+"#"+fragment
+            collapseToCurrentWeek($('#dashboard-picker'))
         },
-        beforeShowDay: function(date) {
-            var cssClass = '';
-            if(date >= startDate && date <= endDate)
-                cssClass = 'ui-datepicker-current-day';
-            return [true, cssClass];
-        },
-        onChangeMonthYear: function(year, month, inst) {
-            selectCurrentWeek(this);
-        }
-    });
-
+    })
 
 
     collapseToCurrentWeek($('#dashboard-picker'))
@@ -83,6 +47,7 @@ $(function () {
 
     if (typeof dashboard_router != 'undefined')
     {
+        /*
         var current_date = new Date(Backbone.history.fragment)
         if (Backbone.history.fragment == "")
         {
@@ -91,6 +56,7 @@ $(function () {
             dashboard_router.navigate(formatted, {trigger:false});
         }
         $('#dashboard-picker').datepicker("setDate", current_date );
+        */
     }
 
     $("#dashboard-picker").datepicker($.datepicker.regional[ "fi" ] );
