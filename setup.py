@@ -13,7 +13,7 @@ setup(
         'Django==1.5',
         'django-tenant-schemas',
         'django-reusableapps==0.1.1',
-        'djangorestframework',
+        #'djangorestframework',
         'django-grappelli',
         'django-stables==dev',
         'django-compressor',

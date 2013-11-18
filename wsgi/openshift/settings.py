@@ -200,7 +200,7 @@ SHARED_APPS = (
     'south',
 
     'mptt',
-    'rest_framework',
+    #'rest_framework',
     'sekizai',
     'crispy_forms',
 

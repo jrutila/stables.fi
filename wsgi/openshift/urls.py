@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from rest_framework import routers
+#from rest_framework import routers
 #from stables.api import ParticipationViewSet
 
 #router = routers.DefaultRouter()
