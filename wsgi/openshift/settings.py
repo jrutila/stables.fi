@@ -27,7 +27,7 @@ if ON_OPENSHIFT:
     DATABASES = {
         'default': {
             'ENGINE': 'tenant_schemas.postgresql_backend', 
-            'NAME': 'talli',
+            'NAME': os.environ.get('PGDATABASE'),
             'USER': os.environ.get('OPENSHIFT_POSTGRESQL_DB_USERNAME'),
             'PASSWORD': os.environ.get('OPENSHIFT_POSTGRESQL_DB_PASSWORD'),
             'HOST': '',
