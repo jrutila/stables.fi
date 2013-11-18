@@ -186,7 +186,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 LOGIN_REDIRECT_URL = '/'
 
 SHARED_APPS = (
-    'tenant_schemas',
     'tenant',
 
     'django.contrib.auth',
@@ -233,7 +232,7 @@ TENANT_APPS = (
     'reporting',
 )
 
-INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS + ('tenant_schemas', )
 
 if not ON_OPENSHIFT:
     INSTALLED_APPS = INSTALLED_APPS + ('devserver', 'debug_toolbar',)
