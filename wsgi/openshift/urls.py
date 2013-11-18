@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('stables.urls')),
+
+    url(r'^comments/', include('fluent_comments.urls')),
     # url(r'^openshift/', include('openshift.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

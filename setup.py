@@ -21,6 +21,7 @@ setup(
         'django-mptt',
         'python-memcached',
         'python-dateutil==1.5',
+        'django-fluent-comments',
     ],
     zip_ok=False,
     zip_safe=False,

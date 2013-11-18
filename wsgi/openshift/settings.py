@@ -218,6 +218,10 @@ TENANT_APPS = (
     'django.contrib.admin',
     'django.contrib.sites',
 
+    # TODO: Deprecation warning: Django 1.6
+    'fluent_comments',
+    'django.contrib.comments',
+
     'grappelli.dashboard',
     'grappelli',
 
