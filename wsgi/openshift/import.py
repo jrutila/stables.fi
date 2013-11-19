@@ -21,8 +21,10 @@ connection.set_tenant(tenant, include_public=False)
 
 from stables.models.user import create_user_profile
 from django.db.models.signals import post_save
-from stables.models import User
+from stables.models import User, Participation
 post_save.disconnect(create_user_profile, sender=User, dispatch_uid="users-profilecreation-signal")
+post_save.disconnect(create_user_profile, sender=Participation)
+post_save.receivers = None
 
 deps = [
   'User',
@@ -64,3 +66,10 @@ for m in modules:
         data.csv = f.read()
         res().import_data(data, raise_errors=True)
         f.close()
+
+cursor = connection.cursor()
+with open('seq_update.sql', 'r') as func_file:
+    func = func_file.read()
+    func = func.replace('%', '%%')
+    cursor.execute(func)
+cursor.execute("select * from seq_update('%s')" % schema_name)

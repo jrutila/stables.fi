@@ -4,6 +4,7 @@ from stables.models import Horse
 from django.contrib.auth.models import User
 from stables.models import UserProfile, RiderInfo, CustomerInfo, RiderLevel
 from stables.models import InstructorInfo, Course, Participation, Enroll
+from stables.models import InstructorParticipation
 from stables.models import Ticket, Transaction, TicketType
 from stables.models import Accident, AccidentType
 from schedule.models import Calendar, Event, Rule
@@ -34,6 +35,10 @@ class CustomerInfoResource(resources.ModelResource):
 class InstructorInfoResource(resources.ModelResource):
   class Meta:
     model = InstructorInfo
+
+class InstructorParticipationResource(resources.ModelResource):
+  class Meta:
+    model = InstructorParticipation
 
 class RiderLevelResource(resources.ModelResource):
   class Meta:
