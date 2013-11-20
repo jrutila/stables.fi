@@ -17,7 +17,7 @@ setup(
         'django-grappelli',
         'django-stables==dev',
         'django-compressor',
-        'South',
+        'South==0.8.2',
         'django-mptt',
         'python-memcached',
         'python-dateutil==1.5',
