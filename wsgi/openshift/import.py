@@ -61,7 +61,7 @@ for m in modules:
     if 'Resource' in mname:
         print mname
         res = m[1]
-        f = open('data/%s.csv' % mname, 'r')
+        f = open('~/app-root/data/data/%s.csv' % mname, 'r')
         data = tablib.Dataset()
         data.csv = f.read()
         res().import_data(data, raise_errors=True)
