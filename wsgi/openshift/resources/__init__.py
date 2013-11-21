@@ -7,6 +7,7 @@ from stables.models import InstructorInfo, Course, Participation, Enroll
 from stables.models import InstructorParticipation
 from stables.models import Ticket, Transaction, TicketType
 from stables.models import Accident, AccidentType
+from stables.models import CourseParticipationActivator, ParticipationTransactionActivator, CourseTransactionActivator
 from schedule.models import Calendar, Event, Rule
 
 from datetime import datetime, timedelta
@@ -80,6 +81,18 @@ class ParticipationResource(resources.ModelResource):
 class EnrollResource(resources.ModelResource):
   class Meta:
     model = Enroll
+
+class CourseParticipationActivatorResource(resources.ModelResource):
+  class Meta:
+    model = CourseParticipationActivator
+
+class ParticipationTransactionActivatorResource(resources.ModelResource):
+  class Meta:
+    model = ParticipationTransactionActivator
+
+class CourseTransactionActivatorResource(resources.ModelResource):
+  class Meta:
+    model = CourseTransactionActivator
 
 from import_export import fields
 from django.contrib.contenttypes.models import ContentType
