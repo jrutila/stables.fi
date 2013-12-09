@@ -42,6 +42,7 @@
                             if (week == 1 && month == 11)
                                 year++;
 			    $el.parent().multiDatesPicker("selectWeek", week, year);
+			    return false;
 		    });
                 }
 		function removeDate(date, type) {
