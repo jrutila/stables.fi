@@ -146,6 +146,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'reversion.middleware.RevisionMiddleware',
     # Enable when adding more languages
     #'django.middleware.locale.LocaleMiddleware',
     #'babeldjango.middleware.LocaleMiddleware',
@@ -156,6 +157,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'middleware.LoginRequiredMiddleware',
 )
+
+LOGIN_EXEMPT_URLS = (r'^api/', )
 
 if not ON_OPENSHIFT:
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
@@ -199,7 +202,7 @@ SHARED_APPS = (
     'south',
 
     'mptt',
-    #'rest_framework',
+    'rest_framework',
     'sekizai',
     'crispy_forms',
 
@@ -256,6 +259,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+            }
+        },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
