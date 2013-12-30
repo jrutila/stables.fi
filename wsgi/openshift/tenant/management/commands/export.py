@@ -5,20 +5,21 @@ from optparse import make_option
 from tenant_schemas.utils import get_tenant_model
 import datetime
 from import_export import resources
+import re
 
 dt = datetime.timedelta(weeks=2)
 
 def get_participation_queryset(self):
     qs = resources.ModelResource.get_queryset(self)
-    return qs.filter(start__gte=datetime.datetime.now()-dt)
+    return qs.filter(start__gte=datetime.datetime.now()-self.dt)
 
 def get_ticket_queryset(self):
     qs = resources.ModelResource.get_queryset(self)
-    return qs.exclude(transaction__created_on__lt=datetime.datetime.now()-dt)
+    return qs.exclude(transaction__created_on__lt=datetime.datetime.now()-self.dt)
 
 def get_transaction_queryset(self):
     qs = resources.ModelResource.get_queryset(self)
-    return qs.filter(created_on__gte=datetime.datetime.now()-dt)
+    return qs.filter(created_on__gte=datetime.datetime.now()-self.dt)
 
 querysets = {
         "ParticipationResource": get_participation_queryset,
@@ -29,6 +30,7 @@ querysets = {
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
             make_option("-d", "--data", dest="datadir"),
+            make_option("", "--time", dest="time"),
             make_option("-s", "--schema", dest="schema"),)
 
     def handle(self, *args, **kwargs):
@@ -41,6 +43,13 @@ class Command(BaseCommand):
 
         datadir=kwargs['datadir']
 
+        dt = None
+        pattern='^([a-z]+):(\d+)$'
+        if 'time' in kwargs and kwargs['time'] and re.search(pattern, kwargs['time']):
+            tdict = eval(re.sub(pattern, '{"\\1": \\2}', kwargs['time']))
+            dt = datetime.timedelta(**tdict)
+            print "from %s" % dt
+
         if not os.path.exists(datadir):
             os.mkdir(datadir)
 
@@ -52,7 +61,8 @@ class Command(BaseCommand):
                 mname = m[0]
                 print mname
                 res = m[1]
-                if mname in querysets:
+                if dt and mname in querysets:
+                    res.dt = dt
                     res.get_queryset = querysets[mname]
                 dataset=res().export()
                 f = open(os.path.join(datadir, '%s.csv' % mname), 'w')

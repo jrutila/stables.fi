@@ -37,7 +37,7 @@ class Command(BaseCommand):
         from django.core.management import call_command
         connection.set_schema_to_public()
         tenant = get_tenant_model().objects.get(schema_name=schema_name)
-        call_command('export', schema=export_schema, datadir=datadir, interactive=False)
+        call_command('export', schema=export_schema, datadir=datadir, time="weeks:2", interactive=False)
         call_command('import', schema=schema_name, datadir=datadir, interactive=False)
         connection.set_tenant(tenant, include_public=False)
         for u in User.objects.exclude(id=1):
