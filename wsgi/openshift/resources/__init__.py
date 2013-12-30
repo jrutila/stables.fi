@@ -10,8 +10,6 @@ from stables.models import Accident, AccidentType
 from stables.models import CourseParticipationActivator, ParticipationTransactionActivator, CourseTransactionActivator
 from schedule.models import Calendar, Event, Rule
 
-from datetime import datetime, timedelta
-
 class HorseResource(resources.ModelResource):
   class Meta:
     model = Horse
@@ -67,10 +65,6 @@ class ParticipationResource(resources.ModelResource):
   class Meta:
     model = Participation
 
-  def get_queryset(self):
-    qs = resources.ModelResource.get_queryset(self)
-    return qs.filter(start__gte=datetime.now()-timedelta(weeks=2))
-
   def save_instance(self, instance, dry_run=False):
     self.before_save_instance(instance, dry_run)
     if not dry_run:
@@ -114,11 +108,6 @@ class ContentTypeField(fields.Field):
 class TicketResource(resources.ModelResource):
   class Meta:
     model = Ticket
-
-  def get_queryset(self):
-    qs = resources.ModelResource.get_queryset(self)
-    return qs.exclude(transaction__created_on__lt=datetime.now()-timedelta(weeks=2))
-
   owner_type = ContentTypeField(column_name="owner_type_id", attribute="owner_type")
 
 class TicketTypeResource(resources.ModelResource):
@@ -130,10 +119,6 @@ class TransactionResource(resources.ModelResource):
 
   class Meta:
     model = Transaction
-
-  def get_queryset(self):
-    qs = resources.ModelResource.get_queryset(self)
-    return qs.filter(created_on__gte=datetime.now()-timedelta(weeks=2))
 
 class AccidentResource(resources.ModelResource):
   class Meta:
