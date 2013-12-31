@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from tenant.models import Client
 
+import tenant_schemas
 
-#admin.site.register(Horse, HorseAdmin)
-admin.site.register(Client)
+#if tenant_schemas.utils.connection.get_tenant().schema_name == 'public':
+    #admin.site.register(Client)
