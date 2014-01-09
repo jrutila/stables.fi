@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-07 10:00+0300\n"
+"POT-Creation-Date: 2013-12-31 14:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,32 +17,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/base.html:58
+#: templates/base.html:67 templates/registration/password_change_form.html:4
+msgid "Change password"
+msgstr ""
+
+#: templates/base.html:68
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:66 templates/registration/login.html:14
+#: templates/base.html:75 templates/registration/login.html:14
 #: templates/registration/login.html:29
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:79
+#: templates/base.html:93
 msgid "Calendar"
 msgstr "Kalenteri"
 
-#: templates/base.html:80
+#: templates/base.html:96
 msgid "Courses"
 msgstr "Tunnit"
 
-#: templates/base.html:81
+#: templates/base.html:97
 msgid "Horses"
 msgstr "Hevoset"
 
-#: templates/base.html:82 templates/reporting/list.html:12
+#: templates/base.html:98 templates/reporting/list.html:12
 msgid "Reports"
 msgstr "Raportit"
 
-#: templates/base.html:83
+#: templates/base.html:99
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -58,6 +62,62 @@ msgid ""
 msgstr ""
 "Kirjauduit onnistuneesti ulos. Voit <a href=\"%(login_url)s\">kirjautua</a> "
 "uudelleen."
+
+#: templates/registration/password_change_done.html:4
+#: templates/registration/password_change_done.html:10
+msgid "Password change successful"
+msgstr ""
+
+#: templates/registration/password_change_done.html:14
+msgid "Your password was changed."
+msgstr ""
+
+#: templates/registration/password_change_form.html:4
+msgid "Documentation"
+msgstr ""
+
+#: templates/registration/password_change_form.html:4
+#, fuzzy
+msgid "Log out"
+msgstr "Olet kirjautunut ulos!"
+
+#: templates/registration/password_change_form.html:7
+msgid "Home"
+msgstr ""
+
+#: templates/registration/password_change_form.html:8
+#: templates/registration/password_change_form.html:12
+#: templates/registration/password_change_form.html:20
+msgid "Password change"
+msgstr ""
+
+#: templates/registration/password_change_form.html:29
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/registration/password_change_form.html:33
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: templates/registration/password_change_form.html:38
+msgid "Old password"
+msgstr ""
+
+#: templates/registration/password_change_form.html:46
+msgid "New password"
+msgstr ""
+
+#: templates/registration/password_change_form.html:54
+msgid "Password (again)"
+msgstr ""
+
+#: templates/registration/password_change_form.html:61
+msgid "Change my password"
+msgstr ""
 
 #: templates/reporting/base_list.html:19
 msgid "Filter"
