@@ -9,13 +9,23 @@ from stables.models import Ticket, Transaction, TicketType
 from stables.models import Accident, AccidentType
 from stables.models import CourseParticipationActivator, ParticipationTransactionActivator, CourseTransactionActivator
 from schedule.models import Calendar, Event, Rule
+from import_export import fields, widgets
+import random
+import string
 
 class HorseResource(resources.ModelResource):
   class Meta:
     model = Horse
     fields = ('id', 'name', 'last_usage_date')
 
+class RandomStringWidget(widgets.Widget):
+    def clean(self, value):
+        if not value:
+            return ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6))
+        return str(value)
+
 class UserResource(resources.ModelResource):
+  username = fields.Field(column_name="username", attribute="username", widget=RandomStringWidget())
   class Meta:
     model = User
 
@@ -44,6 +54,8 @@ class RiderLevelResource(resources.ModelResource):
     model = RiderLevel
 
 class CourseResource(resources.ModelResource):
+  created_on = fields.Field(column_name="created_on", attribute="created_on", readonly=True)
+
   class Meta:
     model = Course
     
@@ -52,6 +64,8 @@ class CalendarResource(resources.ModelResource):
     model = Calendar
 
 class EventResource(resources.ModelResource):
+  created_on = fields.Field(column_name="created_on", attribute="created_on", readonly=True)
+
   class Meta:
     model = Event
   def save_instance(self, instance, dry_run=False):
@@ -71,8 +85,12 @@ class ParticipationResource(resources.ModelResource):
       instance.save(omitstatechange=True)
     self.after_save_instance(instance, dry_run)
 
+class UserProfileWidget(widgets.Widget):
+    def clean(self, value):
+        return User.objects.get(first_name=value.split(' ')[0], last_name=value.split(' ', 1)[1]).get_profile()
 
 class EnrollResource(resources.ModelResource):
+  participant = fields.Field(column_name="participant", attribute="participant", widget=UserProfileWidget())
   class Meta:
     model = Enroll
 
@@ -88,7 +106,6 @@ class CourseTransactionActivatorResource(resources.ModelResource):
   class Meta:
     model = CourseTransactionActivator
 
-from import_export import fields
 from django.contrib.contenttypes.models import ContentType
 class ContentTypeField(fields.Field):
     def clean(self, data):
@@ -105,10 +122,15 @@ class ContentTypeField(fields.Field):
             return ""
         return value.app_label+"."+value.model
 
+class RiderInfoWidget(widgets.Widget):
+    def clean(self, value):
+        return User.objects.get(first_name=value.split(' ')[0], last_name=value.split(' ', 1)[1]).get_profile().rider
+
 class TicketResource(resources.ModelResource):
   class Meta:
     model = Ticket
   owner_type = ContentTypeField(column_name="owner_type_id", attribute="owner_type")
+  owner = fields.Field(column_name="owner_user", attribute="owner", widget=RiderInfoWidget())
 
 class TicketTypeResource(resources.ModelResource):
   class Meta:

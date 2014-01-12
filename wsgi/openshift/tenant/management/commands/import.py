@@ -79,11 +79,15 @@ class Command(BaseCommand):
             if 'Resource' in mname:
                 print mname
                 res = m[1]
-                f = open(os.path.join(datadir, '%s.csv' % mname), 'r')
-                data = tablib.Dataset()
-                data.csv = f.read()
-                res().import_data(data, raise_errors=True)
-                f.close()
+                filename = os.path.join(datadir, '%s.csv' % mname)
+                if os.path.exists(filename):
+                    f = open(filename, 'r')
+                    data = tablib.Dataset()
+                    data.csv = f.read()
+                    res().import_data(data, raise_errors=True)
+                    f.close()
+                else:
+                    print "Skipped %s" % filename
 
         # reset sequences
         cursor = connection.cursor()
