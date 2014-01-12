@@ -146,13 +146,13 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'reversion.middleware.RevisionMiddleware',
     # Enable when adding more languages
     #'django.middleware.locale.LocaleMiddleware',
     #'babeldjango.middleware.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'reversion.middleware.RevisionMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'middleware.LoginRequiredMiddleware',
