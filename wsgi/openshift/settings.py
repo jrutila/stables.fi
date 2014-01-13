@@ -10,12 +10,13 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 if ON_OPENSHIFT:
-    DEBUG = True
+    DEBUG = False
+    ALLOWED_HOSTS = ['.stables.fi']
 else:
     DEBUG = True
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Juho Rutila', 'juho.rutila@sandis.fi'),
 )
 MANAGERS = ADMINS
 
