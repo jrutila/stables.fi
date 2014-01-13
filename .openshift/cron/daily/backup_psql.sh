@@ -4,4 +4,4 @@
  
 NOW="$(date +"%Y-%m-%d")"
 FILENAME="$OPENSHIFT_DATA_DIR/$OPENSHIFT_APP_NAME.$NOW.backup.sql.gz"
-pd_dump $OPENSHIFT_APP_NAME | gzip > $FILENAME
+pg_dump $OPENSHIFT_APP_NAME | gzip > $FILENAME
