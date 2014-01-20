@@ -121,7 +121,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make a dictionary of default keys
@@ -206,8 +205,6 @@ SHARED_APPS = (
     'rest_framework',
     'sekizai',
     'crispy_forms',
-
-    'compressor',
 
     'backbone_tastypie',
 )

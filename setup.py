@@ -15,7 +15,6 @@ setup(
         'django-reusableapps==0.1.1',
         'django-grappelli',
         'django-stables==dev',
-        'django-compressor',
         'South==0.8.2',
         'django-mptt==0.6.0',
         'python-memcached',
