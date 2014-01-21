@@ -11,9 +11,11 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 if ON_OPENSHIFT:
     DEBUG = False
-    ALLOWED_HOSTS = ['.stables.fi']
+    ALLOWED_HOSTS = ['.stables.fi', 'stables-alitur.rhcloud.com']
 else:
     DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    ALLOWED_HOSTS = ['.talli.local',]
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
