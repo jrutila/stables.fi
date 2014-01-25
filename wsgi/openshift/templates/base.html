@@ -21,7 +21,7 @@
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
     {% block base_css %}
     <link rel="stylesheet" href="{% static 'theme/css/ui-lightness/jquery-ui-1.10.0.custom.min.css' %}" type="text/css"/>
-    <link href="{{ STATIC_URL }}theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css" rel="stylesheet">
+    <link href="{% static 'theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'theme/css/bootstrap.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/bootstrap-responsive.min.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3.css' %}" type="text/css"/>
@@ -117,27 +117,27 @@
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <!--
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}theme/js/libs/jquery-1.9.1.min.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="{% static 'theme/js/libs/jquery-1.9.1.min.js' %}"><\/script>')</script>
     -->
 
   <!-- scripts concatenated and minified via build script -->
-  <script src="{{ STATIC_URL }}theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/libs/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/libs/bootstrap.min.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/plugins/msgGrowl/js/msgGrowl.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/plugins/lightbox/jquery.lightbox.min.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/plugins/msgbox/jquery.msgbox.min.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/plugins/validate/jquery.validate.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/plugins/multidatepicker/jquery-ui.multidatespicker.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/Application.js"></script>
-  <script src="{{ STATIC_URL }}js/base.js"></script>
-  <script src="{{ STATIC_URL }}theme/js/demo/signin.js"></script>
+  <script src="{% static 'theme/js/libs/jquery-1.9.1.min.js' %}"></script>
+  <script src="{% static 'theme/js/libs/jquery-ui-1.10.3.custom.min.js' %}"></script>
+  <script src="{% static 'theme/js/libs/bootstrap.min.js' %}"></script>
+  <script src="{% static 'theme/js/plugins/msgGrowl/js/msgGrowl.js' %}"></script>
+  <script src="{% static 'theme/js/plugins/lightbox/jquery.lightbox.min.js' %}"></script>
+  <script src="{% static 'theme/js/plugins/msgbox/jquery.msgbox.min.js' %}"></script>
+  <script src="{% static 'theme/js/plugins/validate/jquery.validate.js' %}"></script>
+  <script src="{% static 'theme/js/plugins/multidatepicker/jquery-ui.multidatespicker.js' %}"></script>
+  <script src="{% static 'theme/js/Application.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+  <script src="{% static 'theme/js/demo/signin.js' %}"></script>
   <script type="text/javascript">
     apiUrl="{% url "api_v1_top_level" api_name="v1" %}";
     dashboardUrl="{% url "newboard" %}";
   </script>
   {% render_block "js" %}
-  <script src="{{ STATIC_URL }}js/calendar.js"></script>
-  <script src="{{ STATIC_URL }}stables/js/modules/comments.js"></script>
+  <script src="{% static 'js/calendar.js' %}"></script>
+  <script src="{% static 'stables/js/modules/comments.js' %}"></script>
  </body>
 </html>
