@@ -1,7 +1,6 @@
 //$('#dashboard-picker').datepicker("option", "selectDate", true );
 //
 var forceUpdateDatePicker = function() {
-    collapseToCurrentWeek($('#dashboard-picker'))
     if (typeof dashboard_router != 'undefined')
     {
         var dates = []
@@ -20,6 +19,7 @@ var forceUpdateDatePicker = function() {
         $('#dashboard-picker').multiDatesPicker("resetDates");
         $('#dashboard-picker').multiDatesPicker("addDates", dates );
     }
+    collapseToCurrentWeek($('#dashboard-picker'))
 }
 
 Backbone.history.bind("all", forceUpdateDatePicker)

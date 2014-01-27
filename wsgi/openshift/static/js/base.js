@@ -1,9 +1,7 @@
 var collapseToCurrentWeek = function(that) {
     window.setTimeout(function () {
         $(that).find("tbody tr:not(:has(td.ui-state-highlight))").hide()
-        var is_caret = $(that).find(".ui-datepicker-title .caret").show()
-        if (is_caret.length == 0)
-            $(that).find(".ui-datepicker-year").after("<b class='caret'></b>")
+        $(that).addClass('collapsed')
     }, 1);
 }
 
@@ -20,6 +18,7 @@ $(function () {
 
     $(document).ready(function() {
         $(".wide").parent(".container").removeClass('container').addClass('dashboard-container')
+        $(".ui-datepicker-year").after("<b class='caret'></b>")
     })
 
 
@@ -32,7 +31,6 @@ $(function () {
         onSelect: function(dateText, inst) {
             var dates = inst.dpDiv.parent().multiDatesPicker('getDates', 'object')
             fragment = _.chain(dates).map(function (dd) { return $.datepicker.formatDate('yy-mm-dd', dd); }).join(',').value()
-            console.log(fragment)
             if (typeof dashboard_router != 'undefined')
                 dashboard_router.navigate(fragment, {trigger:true});
             else
@@ -43,8 +41,13 @@ $(function () {
 
     $("#dashboard-picker").datepicker($.datepicker.regional[ "fi" ] );
     $(".weekdate-picker .ui-datepicker-title").live("click", function() {
-        $(this).parents(".ui-datepicker").find("tbody tr").show()
-        $(this).find(".caret").hide()
+        $picker = $(this).parents(".weekdate-picker")
+        if ($picker.hasClass('collapsed')) {
+            $picker.find("tbody tr").show()
+            $picker.removeClass('collapsed')
+        } else {
+            collapseToCurrentWeek($picker)
+        }
     })
 
     $('.weekdate-picker .ui-datepicker-calendar tr').live('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });

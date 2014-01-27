@@ -22,11 +22,7 @@ Assigned to:	You
 {
     z-index: 999;
     position: relative;
-}
-
-.ui-datepicker .caret
-{
-    border-top-color: white;
+    display: inline-block;
 }
 
 @media (max-width: 768px) {
