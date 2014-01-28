@@ -1,0 +1,23 @@
+{% extends "reportengine/base.html" %}
+{% load staticfiles i18n %}
+
+{% block content %}
+<form method="POST" action="{% url "report-request" %}">
+    {% csrf_token %}
+    <input type="date" name="start"/>
+    <input type="date" name="end"/>
+
+<div id="changelist">
+    {% regroup reports|dictsort:"namespace" by namespace as report_list %}
+    {% for namespace in report_list %}
+        <h3>{{ namespace.grouper|title }}</h3>
+        <input type="hidden" name="namespace" value="{{ namespace.grouper }}"/>
+        {% for report in namespace.list|dictsort:"verbose_name" %}
+        <input type="submit" class="btn btn-default" name="slug" value="{{ report.slug }}"/>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+</form>
+
+{% endblock %}
