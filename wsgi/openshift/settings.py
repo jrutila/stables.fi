@@ -192,6 +192,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 LOGIN_REDIRECT_URL = '/'
 
+PUBLIC_SCHEMA_URLCONF = 'public_urls'
+
 SHARED_APPS = (
     'tenant',
 
