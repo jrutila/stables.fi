@@ -62,11 +62,11 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 
 /*
  * Filter
- */
 .dataTables_filter {
 	float: right;
 	text-align: right;
 }
+ */
 
 
 /*
@@ -80,11 +80,11 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 
 /*
  * Pagination
- */
 .dataTables_paginate {
 	float: right;
 	text-align: right;
 }
+ */
 
 /* Two button pagination - previous / next */
 .paginate_disabled_previous,
@@ -204,6 +204,48 @@ table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }
 table.dataTable thead th:active,
 table.dataTable thead td:active {
 	outline: none;
+}
+
+/*
+ * Twitter bootstrap sorting
+ */
+table .header {
+    cursor: pointer;
+}
+table .header:after {
+  content: "";
+  float: right;
+  margin-top: 7px;
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #000000 transparent;
+  visibility: hidden;
+}
+table .headerSortUp, table .headerSortDown {
+  background-color: #f7f7f9;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+table .header:hover:after {
+  visibility: visible;
+}
+table .headerSortDown:after, table .headerSortDown:hover:after {
+  visibility: visible;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+table .headerSortUp:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
 }
 
 

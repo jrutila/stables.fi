@@ -94,7 +94,7 @@
                 
             <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="icon-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
             <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="icon-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
-            <li {% active request 'reporting-list' %}><a href="{% url 'reporting-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
+            <li {% active request 'reports-list' %}><a href="{% url 'reports-list' %}"><i class="icon-bar-chart"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
             <li {% active request 'user-list' %}><a href="{% url 'user-list' %}"><i class="icon-group"></i><span>{% trans 'Users'|capfirst %}</span></a></li>
         </ul>
       </div>

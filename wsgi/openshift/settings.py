@@ -236,7 +236,7 @@ TENANT_APPS = (
     'stables',
     'schedule',
     'reversion',
-    'reporting',
+    'reportengine',
 )
 
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS + ('tenant_schemas', )
