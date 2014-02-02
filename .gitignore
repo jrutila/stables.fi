@@ -6,3 +6,4 @@
 .project
 .pydevproject
 .sass-cache
+wsgi/static/
