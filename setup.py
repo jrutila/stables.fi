@@ -21,6 +21,7 @@ setup(
         'python-dateutil==1.5',
         'django-fluent-comments==0.9.2',
         'django-import-export==0.1.5',
+        'django-cors-headers',
     ],
     zip_ok=False,
     zip_safe=False,

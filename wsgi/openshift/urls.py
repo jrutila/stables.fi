@@ -13,6 +13,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^api-help/', 'views.api'),
     url(r'^', include('stables.urls')),
 
     url(r'^comments/', include('fluent_comments.urls')),

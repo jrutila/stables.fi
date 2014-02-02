@@ -147,7 +147,10 @@ TEMPLATE_LOADERS = (
     #'django.template.loaders.eggs.Loader',
 )
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
     # Enable when adding more languages
@@ -213,6 +216,7 @@ SHARED_APPS = (
     'crispy_forms',
 
     'backbone_tastypie',
+    'corsheaders',
 )
 
 TENANT_APPS = (
