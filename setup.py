@@ -23,7 +23,6 @@ setup(
         'django-import-export==0.1.5',
         'django-cors-headers',
     ],
-    zip_ok=False,
     zip_safe=False,
     dependency_links = [
         "https://api.github.com/repos/jrutila/django-stables/tarball/master?access_token=30e539ba9491700b201ccbeda82b8cb722c4064c#egg=django-stables-dev",

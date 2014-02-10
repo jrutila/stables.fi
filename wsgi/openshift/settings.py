@@ -292,3 +292,14 @@ LOGGING = {
         },
     }
 }
+
+if DEBUG and not ON_OPENSHIFT:
+    LOGGING['loggers']['django'] = {
+            'handlers': ['logfile'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    LOGGING['handlers']['logfile'] = {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': '/tmp/django.log',
+        }
