@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-31 14:29+0200\n"
+"POT-Creation-Date: 2014-02-09 14:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/base.html:67 templates/registration/password_change_form.html:4
+#: templates/api.html:6
+msgid "API information"
+msgstr ""
+
+#: templates/api.html:10
+#, python-format
+msgid ""
+"\n"
+"You can find your live api from <a href=\"%(api_url)s\">%(api_url)s</a>.\n"
+msgstr ""
+
+#: templates/api.html:16
+msgid ""
+"\n"
+"Do you want following information to your website?\n"
+msgstr ""
+
+#: templates/api.html:24
+msgid ""
+"\n"
+"You can insert following snippet to your site:\n"
+msgstr ""
+
+#: templates/base.html:66 templates/registration/password_change_form.html:4
 msgid "Change password"
 msgstr ""
 
-#: templates/base.html:68
+#: templates/base.html:67
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:75 templates/registration/login.html:14
+#: templates/base.html:74 templates/registration/login.html:14
 #: templates/registration/login.html:29
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:93
+#: templates/base.html:92
 msgid "Calendar"
 msgstr "Kalenteri"
 
-#: templates/base.html:96
+#: templates/base.html:95
 msgid "Courses"
 msgstr "Tunnit"
 
-#: templates/base.html:97
+#: templates/base.html:96
 msgid "Horses"
 msgstr "Hevoset"
 
-#: templates/base.html:98 templates/reporting/list.html:12
+#: templates/base.html:97
 msgid "Reports"
 msgstr "Raportit"
 
-#: templates/base.html:99
+#: templates/base.html:98
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -119,23 +142,36 @@ msgstr ""
 msgid "Change my password"
 msgstr ""
 
-#: templates/reporting/base_list.html:19
-msgid "Filter"
+#: templates/reportengine/list.html:11
+msgid "Start"
+msgstr "Alkaa"
+
+#: templates/reportengine/list.html:15
+msgid "End"
+msgstr "Loppuu"
+
+#: templates/reportengine/report.html:32
+msgid "Description"
+msgstr "Kuvaus"
+
+#: templates/reportengine/report.html:40
+msgid "Data"
+msgstr ""
+
+#: templates/reportengine/report.html:70
+msgid "Filters"
 msgstr "Rajaa"
 
-#: templates/reporting/change_list_results.html:19
-msgid "Remove from sorting"
-msgstr "Poista järjestelystä"
+#: templates/reportengine/report.html:77
+msgid "Request Report"
+msgstr "Aja raportti"
 
-#: templates/reporting/change_list_results.html:20
-#, python-format
-msgid "Sorting priority: %(priority_number)s"
-msgstr ""
+#: templates/reportengine/report.html:86
+msgid "Alternate Formats"
+msgstr "Lataa tiedostoon"
 
-#: templates/reporting/change_list_results.html:21
-msgid "Toggle sorting"
-msgstr ""
+#~ msgid "Remove from sorting"
+#~ msgstr "Poista järjestelystä"
 
-#: templates/reporting/grouping.html:3
-msgid "Group by"
-msgstr "Järjestele"
+#~ msgid "Group by"
+#~ msgstr "Järjestele"
