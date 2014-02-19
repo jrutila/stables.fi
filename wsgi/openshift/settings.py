@@ -12,10 +12,12 @@ PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 if ON_OPENSHIFT:
     DEBUG = False
     ALLOWED_HOSTS = ['.stables.fi', 'stables-alitur.rhcloud.com']
+    SESSION_COOKIE_DOMAIN='.stables.fi'
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
     ALLOWED_HOSTS = ['.talli.local',]
+    SESSION_COOKIE_DOMAIN='.talli.local'
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -23,6 +25,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 AUTH_PROFILE_MODULE = 'stables.UserProfile'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'tenant.backends.MasterUserBackend')
+SESSION_ENGINE='tenant.session.public'
 
 if ON_OPENSHIFT:
     # os.environ['OPENSHIFT_MYSQL_DB_*'] variables can be used with databases created
@@ -232,7 +236,6 @@ SHARED_APPS = (
 
 TENANT_APPS = (
     'django.contrib.auth',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
