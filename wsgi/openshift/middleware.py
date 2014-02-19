@@ -26,7 +26,7 @@ class LoginRequiredMiddleware:
  'django.core.context_processors.auth'."
         if request.tenant.pk == 1:
           return
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated() or not request.user.is_staff:
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in EXEMPT_URLS):
                 return HttpResponseRedirect(settings.LOGIN_URL)
