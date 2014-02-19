@@ -81,7 +81,7 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-LOCALE_PATH = (
+LOCALE_PATHS = (
   os.path.join(PROJECT_DIR, 'locale')
 )
 
@@ -163,6 +163,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'middleware.LoginRequiredMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 LOGIN_EXEMPT_URLS = (r'^api/', )
@@ -181,6 +185,10 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
+CMS_TEMPLATES = (
+        ('cms_template.html', 'Basic template'),
+)
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
@@ -189,13 +197,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.static",
     'django.contrib.messages.context_processors.messages',
-
+    'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
 )
 
 LOGIN_REDIRECT_URL = '/'
 
-PUBLIC_SCHEMA_URLCONF = 'public_urls'
+PUBLIC_SCHEMA_URLCONF = 'public.urls'
 
 SHARED_APPS = (
     'tenant',
@@ -217,6 +225,9 @@ SHARED_APPS = (
 
     'backbone_tastypie',
     'corsheaders',
+
+    'cms',
+    'menus',
 )
 
 TENANT_APPS = (
