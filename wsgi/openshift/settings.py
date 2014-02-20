@@ -73,7 +73,8 @@ TIME_ZONE = 'Europe/Helsinki'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fi-FI'
+LANGUAGE_CODE = 'fi'
+LANGUAGES = [ ('fi', 'Finnish'), ]
 
 SITE_ID = 1
 
@@ -231,7 +232,10 @@ SHARED_APPS = (
     'corsheaders',
 
     'cms',
+    'cms.plugins.text',
+    'cms.plugins.link',
     'menus',
+    'reversion',
 )
 
 TENANT_APPS = (
