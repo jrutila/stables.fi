@@ -23,4 +23,6 @@ var forceUpdateDatePicker = function() {
 }
 
 Backbone.history.bind("all", forceUpdateDatePicker)
+$(document).ready(function() {
 forceUpdateDatePicker()
+})

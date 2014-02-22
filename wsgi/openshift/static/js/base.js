@@ -30,6 +30,12 @@ $(function () {
         showWeek: true,
         onSelect: function(dateText, inst) {
             var dates = inst.dpDiv.parent().multiDatesPicker('getDates', 'object')
+            if ($('body').hasClass('mobile'))
+            {
+                inst.dpDiv.parent().multiDatesPicker('resetDates')
+                inst.dpDiv.parent().multiDatesPicker('addDates', [dateText])
+                dates = inst.dpDiv.parent().multiDatesPicker('getDates', 'object')
+            }
             fragment = _.chain(dates).map(function (dd) { return $.datepicker.formatDate('yy-mm-dd', dd); }).join(',').value()
             if (typeof dashboard_router != 'undefined')
                 dashboard_router.navigate(fragment, {trigger:true});
@@ -61,3 +67,14 @@ $(function () {
     });
 });
 
+var checkMobile = function() {
+    if ($(window).width() <= 798)
+    {
+        jQuery('body').addClass('mobile');
+    } else {
+        jQuery('body').removeClass('mobile');
+    }
+}
+
+$(window).resize(checkMobile)
+$(document).ready(checkMobile)
