@@ -40,7 +40,7 @@ var Application = function () {
 
 	function enableBackToTop () {
 		var backToTop = $('<a>', { id: 'back-to-top', href: '#top' });
-		var icon = $('<i>', { class: 'icon-chevron-up' });
+		var icon = $('<i>', { class: 'fa fa-chevron-up' });
 
 		backToTop.appendTo ('body');
 		icon.appendTo (backToTop);
