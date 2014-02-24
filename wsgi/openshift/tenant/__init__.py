@@ -2,6 +2,9 @@ from django.dispatch import receiver
 from django.contrib.auth.signals import user_logged_in
 from django import db
 from django.contrib.auth.models import User
+from tenant_schemas.utils import get_tenant_model
+from tenant_schemas.utils import get_public_schema_name
+from tenant_schemas.utils import tenant_context
 
 TENANT_KEY='_tenant_id'
 
@@ -11,4 +14,7 @@ def addTenantToSession(**kwargs):
         User.objects.get(pk=kwargs['user'].pk, username=kwargs['user'].username)
         kwargs['request'].session[TENANT_KEY] = db.connection.tenant.id
     except User.DoesNotExist:
-        pass
+        tenant = get_tenant_model().objects.get(schema_name=get_public_schema_name())
+        with tenant_context(tenant):
+            User.objects.get(pk=kwargs['user'].pk, username=kwargs['user'].username)
+        kwargs['request'].session[TENANT_KEY] = tenant.id
