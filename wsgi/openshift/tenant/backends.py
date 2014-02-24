@@ -4,7 +4,7 @@ from tenant_schemas.utils import get_tenant_model
 from tenant_schemas.utils import tenant_context
 
 def fake_public_tenant():
-    return get_tenant_model()(schema_name=get_public_schema_name())
+    return get_tenant_model()(schema_name=get_public_schema_name(), id=1)
 
 class MasterUserBackend(ModelBackend):
     def authenticate(self, username=None, password=None):
