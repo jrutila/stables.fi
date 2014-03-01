@@ -175,7 +175,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.language.LanguageCookieMiddleware',
 )
 
-LOGIN_EXEMPT_URLS = (r'^api/', )
+LOGIN_EXEMPT_URLS = (r'^api/', r'^shop/' )
 
 if not ON_OPENSHIFT:
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
@@ -260,6 +260,12 @@ TENANT_APPS = (
     'schedule',
     'reversion',
     'reportengine',
+
+    'shop',
+    'shop.addressmodel',
+    'stables_shop',
+
+    'django_settings',
 )
 
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS + ('tenant_schemas', )
@@ -277,6 +283,9 @@ SOUTH_DATABASE_ADAPTERS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
+SHOP_PAYMENT_BACKENDS = ['shop.payment.backends.prepayment.ForwardFundBackend',]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

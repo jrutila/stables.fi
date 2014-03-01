@@ -1,0 +1,37 @@
+{% extends "shop/base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load stables_shop_tags settings_tags %}
+
+{% block body %}
+{% blocktrans %}
+You can now pay your order by using following information:
+{% endblocktrans %}
+<p>
+{% trans "Account number:" %} {% settings "payment_account_number" %}
+</p>
+<p>
+{% trans "Receiver:" %} {% settings "payment_receiver" %}
+</p>
+<p>
+{% trans "Amount:" %} {{ amount }}
+</p>
+<p>
+{% trans "Reference number:" %} {{ transaction_id|bank_reference }}
+</p>
+
+<p>
+{% blocktrans %}
+Your payment will be processed by hand. Allow some time until this order is completed.
+{% endblocktrans %}
+</p>
+
+<p>
+<a href="{{ next_url }}">
+{% blocktrans %}
+Alright, I have paid the order.
+{% endblocktrans %}
+</a>
+</p>
+
+{% endblock %}
