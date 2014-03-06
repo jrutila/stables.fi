@@ -26,6 +26,7 @@ setup(
         'django-cms==2.4.3',
         'django-settings',
         'django-shop',
+        'django-durationfield',
     ],
     zip_safe=False,
     dependency_links = [

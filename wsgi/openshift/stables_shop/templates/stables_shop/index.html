@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h3>{% trans "Unfinished orders" %}</h3>
+<table>
+    <thead>
+        <tr>
+            <th>{% trans "Id" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Target" %}</th>
+            <th>{% trans "Product" %}</th>
+            <th>{% trans "Total" %}</th>
+            <th>{% trans "Is paid" %}</th>
+            <th>{% trans "Is shipped" %}</th>
+            <th>{% trans "Transaction" %}</th>
+            <th>{% trans "Actions" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for o in orders %}
+        <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.get_status_display }}</td>
+            <td>{{ o.shipping_address_text }}</td>
+            <td>{{ o.items.all.0.product_name }}</td>
+            <td>{{ o.order_total }}</td>
+            <td>{{ o.is_paid }}</td>
+            <td>{{ o.is_shipped }}</td>
+            <td>{{ o.orderpayment_set.all.0.transaction_id }}</td>
+            <td>
+                {% if not o.is_paid %}
+                <form action="{% url "order-paid" %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ o.id }}" />
+                    <input type="hidden" name="amount" value="{{ o.order_total }}" />
+                    <input type="hidden" name="transaction_id" value="{{ o.orderpayment_set.all.0.transaction_id }}"/>
+                    <input type="hidden" name="payment_method" value="{{ o.orderpayment_set.all.0.payment_method }}"/>
+                    <button>{% trans "Paid" %}</button>
+                </form>
+                {% elif not o.is_shipped %}
+                <form action="{% url "order-ship" %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ o.id }}" />
+                    <button>{% trans "Ship" %}</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

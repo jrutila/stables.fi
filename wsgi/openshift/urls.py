@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^api-help/', 'views.api'),
     url(r'^shop/checkout/$', NoShippingAddressCheckoutSelectionView.as_view()),
     url(r'^shop/', include(shop_urls)),
+    url(r'^s/', include('stables_shop.urls')),
     url(r'^', include('stables.urls')),
 
     url(r'^comments/', include('fluent_comments.urls')),
