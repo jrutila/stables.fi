@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 
 register = template.Library()
 
@@ -19,3 +20,7 @@ def bank_reference(trid):
     check = reference_check_number(trid)
     ref = trid + str(check)
     return split_human_readale(ref, 5)
+
+@register.filter
+def add_vat(value):
+    return value*(1+settings.SHOP_VAT)

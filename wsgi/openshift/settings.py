@@ -286,6 +286,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
 SHOP_PAYMENT_BACKENDS = ['shop.payment.backends.prepayment.ForwardFundBackend',]
+SHOP_CART_MODIFIERS = ['stables_shop.modifiers.FixedVATRate',]
+from decimal import Decimal
+SHOP_VAT = Decimal('0.24')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
