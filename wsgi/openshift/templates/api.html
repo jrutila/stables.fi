@@ -12,14 +12,21 @@ You can find your live api from <a href="{{ api_url }}">{{ api_url }}</a>.
 {% endblocktrans %}
 </p>
 
-<p>
-{% blocktrans %}
-Do you want following information to your website?
-{% endblocktrans %}
-</p>
+<div class="panel-group" id="accordion">
 
-<div id='stables-timetable' data-url="{{ root_url }}" data-days="3">Ladataan...</div>
-<script src="{{ script_url }}"></script>
+    {% for titl, script_url in script_urls %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion">{{ titl }}</a></h4>
+    </div>
+    <div class="panel-collapse collapse in">
+      <div class="panel-body">
+
+          <div id='stables-timetable-{{ forloop.counter }}' data-url="{{ root_url }}" data-days="3">Ladataan...</div>
+
+              <script>target = document.getElementById("stables-timetable-{{ forloop.counter }}");</script>
+              <script src="{{ script_url }}"></script>
 
 {% blocktrans %}
 You can insert following snippet to your site:
@@ -29,6 +36,14 @@ You can insert following snippet to your site:
 <div id='stables-timetable' data-url="{{ root_url }}" data-days="3">Ladataan...</div>
 <script src="{{ script_url }}"></script>
 </textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+    {% endfor %}
+</div>
 
 </div>
 </div>
