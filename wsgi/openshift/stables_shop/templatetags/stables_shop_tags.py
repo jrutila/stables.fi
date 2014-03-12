@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from decimal import Decimal
 
 register = template.Library()
 
@@ -23,4 +24,6 @@ def bank_reference(trid):
 
 @register.filter
 def add_vat(value):
-    return value*(1+settings.SHOP_VAT)
+    TWO = Decimal(10) ** -2
+    final = value*(1+settings.SHOP_VAT)
+    return final.quantize(TWO)
