@@ -3,7 +3,7 @@
 
 {% block content %}
 <h3>{% trans "Unfinished orders" %}</h3>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>{% trans "Id" %}</th>
@@ -19,6 +19,7 @@
     </thead>
     <tbody>
     {% for o in orders %}
+      {% if not o.is_paid or not o.is_shipped %}
         <tr>
             <td>{{ o.id }}</td>
             <td>{{ o.get_status_display }}</td>
@@ -47,6 +48,29 @@
                 {% endif %}
             </td>
         </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>{% trans "Products" %}</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans "Id" %}</th>
+            <th>{% trans "Active" %}</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Edit" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in products %}
+    <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.active }}</td>
+        <td>{{ p.name }}</td>
+        <td><a href="{% url "product-edit" pk=p.id %}">{% trans "Edit" %}</a></td>
+    </tr>
     {% endfor %}
     </tbody>
 </table>
