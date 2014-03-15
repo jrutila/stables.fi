@@ -3,6 +3,7 @@ from shop.views.checkout import CheckoutSelectionView
 from shop.models import AddressModel
 from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
+from django.views.generic import CreateView
 from django.views.generic import FormView
 from django.views.generic import RedirectView
 from shop.models import Order
@@ -14,6 +15,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from crispy_forms.layout import ButtonHolder
+from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import MultipleObjectsReturned
 
 class DefaultHelper(FormHelper):
     label_class = "col-xs-2"
@@ -78,6 +82,16 @@ class ShopRedirectView(RedirectView):
     def get_redirect_url(self):
         return reverse('product_list')
 
+_products = None
+def products():
+    global _products
+    if _products == None:
+        _products = {}
+        for ct in ContentType.objects.filter(app_label='stables_shop'):
+            if issubclass(ct.model_class(), Product):
+                _products[ct.model_class()] = ct
+    return _products
+
 class HomePageView(TemplateView):
     template_name = "stables_shop/index.html"
 
@@ -85,6 +99,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['orders'] = Order.objects.all().order_by('status', '-id')
         context['products'] = Product.objects.all().order_by('active')
+        context['newproducts'] = products()
         return context
 
 class DefaultForm(forms.Form):
@@ -98,10 +113,14 @@ class DefaultForm(forms.Form):
 class ShipForm(DefaultForm):
     order = forms.ModelChoiceField(queryset=Order.objects.all())
     target = forms.ModelChoiceField(queryset=UserProfile.objects.all())
+    target_name = forms.CharField(required=False)
 
     def clean(self):
         data = super(ShipForm, self).clean()
         if 'target' not in data:
+            if 'target_name' in data:
+                data['order'].shipping_address_text = data['target_name']
+                data['order'].save()
             try:
                 data['target'] = UserProfile.objects.find(
                     data['order'].shipping_address_text)
@@ -109,28 +128,45 @@ class ShipForm(DefaultForm):
             except UserProfile.DoesNotExist:
                 self.errors['target'] = ErrorList(
                         [_('User "%s" not found') % data['order'].shipping_address_text])
+            except MultipleObjectsReturned:
+                self.errors['target'] = ErrorList(
+                        [_('User "%s" is too ambiguous') % data['order'].shipping_address_text])
         else:
             data['order'].shipping_address_text = data['target'].__unicode__()
             data['order'].save()
         return data
 
-class ProductForm(forms.ModelForm):
-    class Meta:
-        model = Product
+def prodform(prodmodel):
+    class ProductForm(forms.ModelForm):
+        class Meta:
+            model = prodmodel
 
-    def __init__(self, *args, **kwargs):
-        super(ProductForm, self).__init__(*args, **kwargs)
-        self.helper = DefaultHelper(self)
-        self.helper.form_tag = True
-        self.helper.disable_csrf = False
-        self.helper.layout.append(
-                    Submit('save', _('Save')),
-                )
+        def __init__(self, *args, **kwargs):
+            super(ProductForm, self).__init__(*args, **kwargs)
+            self.helper = FormHelper(self)
+            self.helper.form_tag = True
+            self.helper.disable_csrf = False
+            self.helper.layout.append(
+                      ButtonHolder(
+                        Submit('save', _('Save')),
+                        )
+                    )
+    return ProductForm
+
 
 class EditProduct(UpdateView):
     model = Product
     template_name = "stables/generic_form.html"
-    form_class = ProductForm
+    def get_form_class(self):
+        return prodform(self.object.__class__)
+
+class CreateProduct(CreateView):
+    model = Product
+    template_name = "stables/generic_form.html"
+
+    def get_form_class(self):
+        ct = ContentType.objects.get(pk=self.kwargs['content_type_id'])
+        return prodform(ct.model_class())
 
 class PayForm(DefaultForm):
     order = forms.ModelChoiceField(queryset=Order.objects.all())
