@@ -2,6 +2,10 @@
 {% load i18n %}
 
 {% block content %}
+<p>
+{% url "shop-in" as shopurl %}
+{% blocktrans %}You can visit your shop <a href='{{ shopurl }}'>here</a>.{% endblocktrans %}
+</p>
 <h3>{% trans "Unfinished orders" %}</h3>
 <table class="table">
     <thead>
@@ -38,7 +42,11 @@
             {% else %}
             <td>{{ o.shipping_address_text }}</td>
             {% endif %}
-            <td>{{ o.items.all.0.product_name }}</td>
+            <td>
+                {% for i in o.items.all %}
+                {{ i.product_name }}<br/>
+                {% endfor %}
+            </td>
             <td>{{ o.order_total }}</td>
             <td>{{ o.is_paid }}</td>
             <td>{{ o.is_shipped }}</td>
@@ -61,6 +69,11 @@
     {% endfor %}
     </tbody>
 </table>
+<p>
+{% url "order-list" as orderurl %}
+{% blocktrans %}<a href='{{ orderurl }}'>Finished orders</a>.{% endblocktrans %}
+</p>
+
 
 <h3>{% trans "Products" %}</h3>
 <table class="table">

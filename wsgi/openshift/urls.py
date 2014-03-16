@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^api-help/', 'views.api'),
     url(r'^shopper/checkout/$', NoShippingAddressCheckoutSelectionView.as_view()),
     url(r'^shopper/', include(shop_urls)),
-    url(r'^shop/$', ShopRedirectView.as_view()),
+    url(r'^shop/$', ShopRedirectView.as_view(), name='shop-in'),
     url(r'^s/', include('stables_shop.urls')),
     url(r'^', include('stables.urls')),
 

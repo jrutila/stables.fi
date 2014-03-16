@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import CreateView
 from django.views.generic import FormView
+from django.views.generic import ListView
 from django.views.generic import RedirectView
 from shop.models import Order
 from shop.models import Product
@@ -167,6 +168,13 @@ class CreateProduct(CreateView):
     def get_form_class(self):
         ct = ContentType.objects.get(pk=self.kwargs['content_type_id'])
         return prodform(ct.model_class())
+
+class FinishedOrderList(ListView):
+    model = Order
+    template_name = "stables_shop/order_list.html"
+    context_object_name = 'order_list'
+
+    queryset = Order.objects.all().order_by('-id')
 
 class PayForm(DefaultForm):
     order = forms.ModelChoiceField(queryset=Order.objects.all())
