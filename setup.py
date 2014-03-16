@@ -24,6 +24,7 @@ setup(
         'django-cors-headers',
         'django-reversion==1.7.1',
         'django-cms==2.4.3',
+        'newrelic',
     ],
     zip_safe=False,
     dependency_links = [
