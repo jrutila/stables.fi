@@ -18,6 +18,9 @@ else:
     TEMPLATE_DEBUG = DEBUG
     ALLOWED_HOSTS = ['.talli.local',]
     SESSION_COOKIE_DOMAIN='.talli.local'
+    DEBUG_TOOLBAR_CONFIG = {
+                'INTERCEPT_REDIRECTS': False,
+                }
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -168,7 +171,7 @@ MIDDLEWARE_CLASSES = (
     'reversion.middleware.RevisionMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'middleware.LoginRequiredMiddleware',
+    #'middleware.LoginRequiredMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',

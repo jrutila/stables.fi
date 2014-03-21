@@ -93,7 +93,16 @@ def products():
                 _products[ct.model_class()] = ct
     return _products
 
-class HomePageView(TemplateView):
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
+
+class ShopEditorMixin(object):
+    @method_decorator(permission_required('shop.change_product'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(ShopEditorMixin, self).dispatch(request, *args, **kwargs)
+
+
+class HomePageView(ShopEditorMixin, TemplateView):
     template_name = "stables_shop/index.html"
 
     def get_context_data(self, **kwargs):
@@ -155,13 +164,13 @@ def prodform(prodmodel):
     return ProductForm
 
 
-class EditProduct(UpdateView):
+class EditProduct(ShopEditorMixin, UpdateView):
     model = Product
     template_name = "stables/generic_form.html"
     def get_form_class(self):
         return prodform(self.object.__class__)
 
-class CreateProduct(CreateView):
+class CreateProduct(ShopEditorMixin, CreateView):
     model = Product
     template_name = "stables/generic_form.html"
 
@@ -169,7 +178,7 @@ class CreateProduct(CreateView):
         ct = ContentType.objects.get(pk=self.kwargs['content_type_id'])
         return prodform(ct.model_class())
 
-class FinishedOrderList(ListView):
+class FinishedOrderList(ShopEditorMixin, ListView):
     model = Order
     template_name = "stables_shop/order_list.html"
     context_object_name = 'order_list'
@@ -182,7 +191,7 @@ class PayForm(DefaultForm):
     transaction_id = forms.CharField()
     payment_method = forms.CharField()
 
-class PayView(FormView):
+class PayView(ShopEditorMixin, FormView):
     template_name = 'stables_shop/generic_form.html'
     success_url = '/s' #TODO: Bad!
     form_class = PayForm
@@ -197,7 +206,7 @@ class PayView(FormView):
                 )
         return super(PayView, self).form_valid(form)
 
-class ShipView(FormView):
+class ShipView(ShopEditorMixin, FormView):
     template_name = 'stables_shop/generic_form.html'
     success_url = '/s' #TODO: Bad!
     form_class = ShipForm
