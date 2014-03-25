@@ -59,12 +59,14 @@ $(function () {
     $('.weekdate-picker .ui-datepicker-calendar tr').live('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });
     $('.weekdate-picker .ui-datepicker-calendar tr').live('mouseleave', function() { $(this).find('td a').removeClass('ui-state-hover'); });
 
+    /*
     $('.mainnav li:eq(0)').live('mousemove', function() {
         $(this).parents(".subnavbar-inner").next(".subnavbar-inner").removeClass("collapse");
     });
     $('.subnavbar:has(li:eq(0):not(.active))').on('mouseleave', function() {
         $(this).find(".subnavbar-inner:eq(1)").addClass("collapse");
     });
+    */
 });
 
 var checkMobile = function() {
