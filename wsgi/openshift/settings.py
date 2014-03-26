@@ -18,6 +18,7 @@ else:
     TEMPLATE_DEBUG = DEBUG
     ALLOWED_HOSTS = ['.talli.local',]
     SESSION_COOKIE_DOMAIN='.talli.local'
+    DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -93,11 +94,13 @@ LOCALE_PATHS = (
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
+if not ON_OPENSHIFT:
+    MEDIA_ROOT = os.path.join(PROJECT_DIR, '..', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -193,6 +196,16 @@ TEMPLATE_DIRS = (
 
 CMS_TEMPLATES = (
         ('cms_template.html', 'Basic template'),
+        ('public/feature.html', 'Feature template'),
+        ('public/testimonial.html', 'Testimonial template'),
+)
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -235,8 +248,15 @@ SHARED_APPS = (
     'cms',
     'cms.plugins.text',
     'cms.plugins.link',
+
+    'cmsplugin_filer_image',
+    'filer',
+    'easy_thumbnails',
+
     'menus',
     'reversion',
+
+    'public',
 )
 
 TENANT_APPS = (

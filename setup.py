@@ -25,6 +25,7 @@ setup(
         'django-reversion==1.7.1',
         'django-cms==2.4.3',
         'newrelic',
+        'cmsplugin-filer',
     ],
     zip_safe=False,
     dependency_links = [
