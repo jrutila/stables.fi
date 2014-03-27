@@ -198,6 +198,7 @@ CMS_TEMPLATES = (
         ('cms_template.html', 'Basic template'),
         ('public/feature.html', 'Feature template'),
         ('public/testimonial.html', 'Testimonial template'),
+        ('public/slider.html', 'Slider template'),
 )
 
 THUMBNAIL_PROCESSORS = (

@@ -1,6 +1,6 @@
 {% load i18n sekizai_tags %}
 {% load staticfiles tags %}
-{% load cms_tags %}
+{% load cms_tags menu_tags %}
 {% load public_tags %}
 <!doctype html>
 <html>
@@ -46,6 +46,8 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right">
+                {% show_menu 0 100 100 100 %}
+                <!--
                 <li class="active"><a href="index.html">HOME</a></li>
                 <li><a href="about-us.html">ABOUT US</a></li>
                 <li class="dropdown">
@@ -66,23 +68,14 @@
                 <li><a href="blog.html">BLOG</a></li>
                 <li><a href="sign-up.html">Sign up</a></li>
                 <li><a href="sign-in.html">Sign in</a></li>
+                -->
             </ul>
         </div>
      </div>
    </div>
 
    <section id="feature_slider">
-       <article class="slide" id="showcasing" style="background: url('{% static "theme/clean-canvas/img/backgrounds/landscape.png" %}')">
-           <img class="asset left-30 sp600 t120 z1" src="{% static "theme/clean-canvas/img/showcase3.png" %}" />
-           <div class="info">
-               <h2>Järjestelmä helpottamaan Sinun elämääsi!</h2>
-           </div>
-       </article>
-       <article class="slide" id="showcasing" style="background: url('{% static "theme/clean-canvas/img/backgrounds/aqua.png" %}')">
-           <div class="info">
-               <h2>Osta nyt!</h2>
-           </div>
-       </article>
+       {% get_slider %}
    </section>
 
    <div id="showcase">
