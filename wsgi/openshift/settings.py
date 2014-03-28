@@ -195,7 +195,9 @@ TEMPLATE_DIRS = (
 )
 
 CMS_TEMPLATES = (
-        ('cms_template.html', 'Basic template'),
+        ('public/cms_template.html', 'Basic template'),
+        ('public/features_template.html', 'Features page'),
+        ('public/frontpage_template.html', 'Frontpage'),
         ('public/feature.html', 'Feature template'),
         ('public/testimonial.html', 'Testimonial template'),
         ('public/slider.html', 'Slider template'),

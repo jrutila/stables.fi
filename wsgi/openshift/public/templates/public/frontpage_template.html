@@ -1,0 +1,31 @@
+{% extends "public/base.html" %}
+{% load cms_tags %}
+{% load sekizai_tags %}
+{% load public_tags %}
+
+{% block content %}
+
+   <section id="feature_slider">
+       {% get_slider %}
+   </section>
+
+   <div id="showcase">
+       <div class="container">
+           <div class="section_header">
+         <h3>Tuote</h3>
+            </div>
+  {% placeholder content %}
+
+       </div>
+   </div>
+
+   <div id="features">
+       <div class="container">
+           <div class="section_header">
+               <h3>{{ root.get_title }}</h3>
+           </div>
+       {% get_features %}
+       </div>
+   </div>
+
+{% endblock content %}
