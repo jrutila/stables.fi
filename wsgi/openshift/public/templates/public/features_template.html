@@ -9,17 +9,6 @@
     <link rel="stylesheet" href="{% static "theme/clean-canvas/css/compiled/features.css" %}" type="text/css" />    
 {% endaddtoblock %}
 
-  <div id='features' class="features_page">
-      <div class="container">
-        <div class="feature_wrapper option1">
-          <div class="section_header">
-              <h3>{{ current_page.get_title }}</h3>
-          </div>
-          <div class="row subtitle">
-              {% placeholder subtitle %}
-          </div>
-          {% get_features %}
-        </div>
-      </div>
-  </div>
+{% include "public/_features.html" %}
+
 {% endblock content %}

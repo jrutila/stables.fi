@@ -19,6 +19,7 @@ else:
     ALLOWED_HOSTS = ['.talli.local',]
     SESSION_COOKIE_DOMAIN='.talli.local'
     DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
+    EMAIL_PORT = 1025
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -198,9 +199,15 @@ CMS_TEMPLATES = (
         ('public/cms_template.html', 'Basic template'),
         ('public/features_template.html', 'Features page'),
         ('public/frontpage_template.html', 'Frontpage'),
+        ('public/contact_template.html', 'Contact page'),
         ('public/feature.html', 'Feature template'),
         ('public/testimonial.html', 'Testimonial template'),
         ('public/slider.html', 'Slider template'),
+)
+
+CMSPLUGIN_CONTACT_FORMS = (
+        #('cmsplugin_contact.forms.ContactForm', 'default'),
+        ('public.forms.ContactForm', 'Contact form'),
 )
 
 THUMBNAIL_PROCESSORS = (
@@ -255,6 +262,8 @@ SHARED_APPS = (
     'cmsplugin_filer_image',
     'filer',
     'easy_thumbnails',
+
+    'cmsplugin_contact',
 
     'menus',
     'reversion',

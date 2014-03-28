@@ -21,7 +21,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css' />
 
-    <link rel="stylesheet" href="{% static 'theme/css/font-awesome.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static "theme/css/font-awesome.css" %}" type="text/css"/>
     <link rel="stylesheet" href="{% static "theme/clean-canvas/css/compiled/index.css" %}" type="text/css" media="screen" />    
     <link rel="stylesheet" type="text/css" href="{% static "theme/clean-canvas/css/lib/animate.css" %}" media="screen, projection" />    
 
@@ -63,24 +63,18 @@
        {% endblock content %}
    {% endblock body %}
 
+   {% block footer %}
    <footer id="footer">
        <div class="container">
-           <div class="row sections">
-               <div class="col-sm-4">
+           <div class="row info">
+               <div class="col-sm-6 residence">
+                   Palvelun tuottaa<br/>Sandis Solutions Oy
                </div>
-               <div class="col-sm-4 testimonials">
-                   {% random_testimonial %}
-               </div>
-               <div class="col-sm-4 contact">
-                   <h3 class="footer_header">
-                       {% trans "Contact" %}
-                   </h3>
-                   <form action="#" method="post">
-                       <input type="text" placeholder="{% trans "Your name" %}"/>
-                       <input type="text" placeholder="{% trans "Your email" %}"/>
-                       <textarea rows="3" placeholder="{% trans "Message" %}"></textarea>
-                       <input type="submit" value="{% trans "Send" %}" />
-                   </form>
+               <div class="col-sm-5 touch">
+                   <ul>
+                       <li><strong>Puh.</strong>+358 44 767 1369</li>
+                       <li><strong>Email</strong> info@sandis.fi</li>
+                   </ul>
                </div>
            </div>
            <div class="row credits">
@@ -92,6 +86,7 @@
            </div>
        </div>
    </footer>
+   {% endblock footer %}
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <!--
