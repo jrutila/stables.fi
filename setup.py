@@ -30,6 +30,7 @@ setup(
         'django-settings',
         'django-shop',
         'django-durationfield',
+        'importlib',
     ],
     zip_safe=False,
     dependency_links = [
