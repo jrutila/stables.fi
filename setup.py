@@ -37,6 +37,7 @@ setup(
         "https://api.github.com/repos/jrutila/django-stables/tarball/master?access_token=30e539ba9491700b201ccbeda82b8cb722c4064c#egg=django-stables-dev",
         "https://api.github.com/repos/jrutila/django-tenant-schemas/tarball/master?access_token=30e539ba9491700b201ccbeda82b8cb722c4064c#egg=django-tenant-schemas-1.4.4-1",
         "https://api.github.com/repos/jrutila/cmsplugin-contact/tarball/master#egg=cmsplugin-contact",
+        "https://api.github.com/repos/jrutila/cmsplugin-filer/tarball/master#egg=cmsplugin-filer-0.9.5-1",
         "https://api.github.com/repos/jrutila/django-shop/tarball/master?access_token=30e539ba9491700b201ccbeda82b8cb722c4064c#egg=django-shop-0.2.0-1",
     ]
 )
