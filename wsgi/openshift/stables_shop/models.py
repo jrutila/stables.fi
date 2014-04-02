@@ -33,6 +33,7 @@ class TicketProduct(Product):
     def get_activator(self):
         return TicketProductActivator()
 
+
 class TicketProductActivator(ProductActivator):
     start = models.PositiveIntegerField(null=True)
     end = models.PositiveIntegerField(null=True)
@@ -44,14 +45,33 @@ class TicketProductActivator(ProductActivator):
         if user:
             self.rider = user.rider
             for i in range(0, self.product.amount):
+                exp = None
+                if self.product.expires:
+                    exp = self.product.expires
                 t = Ticket.objects.create(
                         type=self.product.ticket,
-                        owner=self.rider)
+                        owner=self.rider,
+                        expires=exp)
                 if i == 0: self.start = t.id
                 if i == self.product.amount-1: self.end = t.id
             self.duration = self.product.duration
             self.status = self.ACTIVATED
             self.save()
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=Ticket)
+def ticket_expirer(sender, **kwargs):
+    ticket = kwargs['instance']
+    if ticket.transaction and not ticket.expires:
+        actr = TicketProductActivator.objects.filter(start__lte=ticket.id, end__gte=ticket.id)
+        if actr:
+            actr = actr[0]
+            exp = datetime.datetime.combine(
+                    ticket.transaction.source.start.date()+actr.duration,
+                    datetime.time(23,59,59))
+            Ticket.objects.filter(id__gte=actr.start, id__lte=actr.end).update(expires=exp)
 
 class EnrollProduct(Product):
     course = models.ForeignKey(Course)
