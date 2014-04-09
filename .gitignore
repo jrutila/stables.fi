@@ -8,3 +8,5 @@
 .sass-cache
 wsgi/static/
 .idea/
+wsgi/components/
+wsgi/media/
