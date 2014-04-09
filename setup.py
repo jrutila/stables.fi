@@ -31,6 +31,7 @@ setup(
         'django-shop',
         'django-durationfield',
         'importlib',
+        'django-bower',
     ],
     zip_safe=False,
     dependency_links = [

@@ -132,7 +132,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'djangobower.finders.BowerFinder',
 )
+
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_DIR, '..', 'components')
+
+BOWER_INSTALLED_APPS = (
+        'momentjs',
+        )
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
@@ -269,6 +276,7 @@ SHARED_APPS = (
     'reversion',
 
     'public',
+    'djangobower',
 )
 
 TENANT_APPS = (
