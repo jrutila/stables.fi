@@ -88,6 +88,8 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+USE_TZ = True
+
 LOCALE_PATHS = (
   os.path.join(PROJECT_DIR, 'locale')
 )
@@ -169,6 +171,7 @@ MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
     'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'middleware.TimezoneMiddleware',
     # Enable when adding more languages
     #'django.middleware.locale.LocaleMiddleware',
     #'babeldjango.middleware.LocaleMiddleware',

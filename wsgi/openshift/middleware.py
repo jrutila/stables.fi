@@ -30,3 +30,16 @@ class LoginRequiredMiddleware:
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in EXEMPT_URLS):
                 return HttpResponseRedirect(settings.LOGIN_URL)
+
+import pytz
+
+from django.utils import timezone
+
+class TimezoneMiddleware(object):
+    def process_request(self, request):
+        # TODO: Fix this to be the users timezone
+        tzname = "Europe/Helsinki" #request.session.get('django_timezone')
+        if tzname:
+            timezone.activate(pytz.timezone(tzname))
+        else:
+            timezone.deactivate()
