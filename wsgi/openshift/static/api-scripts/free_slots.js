@@ -26,7 +26,7 @@ $('head').append("<script type='text/javascript' src='http://cdnjs.cloudflare.co
         loadScript("http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js", function () {
 $('head').append("<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/lang/fi.js'></script>");
 
-var eventTemplate = '<span <% if (cancelled) { %>style="text-decoration: line-through; font-weight: bold; color: red;"<% } %>><% if (typeof original_start !== "undefined") { %> <%= original_start.format("HH:mm") %> &#8658; <%= start.format("dd DoM HH:mm") %>-<%= end.format("HH:mm") %> <% } else { %> <%= start.format("dd DoM HH:mm") %>-<%= end.format("HH:mm") %> <% } %> <%= title %></span> <% if (!cancelled && typeof free_slots !== "undefined") { %><b><%= free_amount %> paikka<% if (free_amount > 1) { %>a<% } %> vapaana</b><% } else if (cancelled) { %>Peruttu!<% } %>';
+var eventTemplate = '<span style="font-weight: bold; <% if (cancelled) { %>text-decoration: line-through; color: red;<% } %>"><% if (typeof original_start !== "undefined") { %> <%= original_start.format("HH:mm") %> &#8658; <%= start.format("dd DoM HH:mm") %>-<%= end.format("HH:mm") %> <% } else { %> <%= start.format("dd DoM HH:mm") %>-<%= end.format("HH:mm") %> <% } %> <%= title %></span> <% if (!cancelled && typeof free_slots !== "undefined") { %><div><%= free_amount %> paikka<% if (free_amount > 1) { %>a<% } %> vapaana</div><% } else if (cancelled) { %>Peruttu!<% } %>';
 
 var $target = (typeof(target) != "undefined" && $(target)) || $('#stables-timetable');
 var url = $target.attr('data-url');
