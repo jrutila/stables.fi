@@ -9,6 +9,7 @@ from stables.models import UserProfile
 from stables.models import Ticket
 from stables.models import RiderInfo
 from stables.models import Course
+from django.utils import timezone
 import datetime
 
 class DigitalShippingAddressModel(models.Model):
@@ -86,7 +87,7 @@ class EnrollProduct(Product):
 def check_active(sender, instance, created, **kwargs):
     if instance.course.is_full():
         EnrollProduct.objects.filter(course=instance.course).update(active=False)
-    elif instance.course.get_occurrences()[0].start < datetime.datetime.now():
+    elif instance.course.get_occurrences()[0].start < timezone.now():
         EnrollProduct.objects.filter(course=instance.course).update(active=False)
     else:
         EnrollProduct.objects.filter(course=instance.course).update(active=True)
