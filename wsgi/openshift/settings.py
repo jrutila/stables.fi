@@ -337,6 +337,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
 SHOP_PAYMENT_BACKENDS = ['shop.payment.backends.prepayment.ForwardFundBackend',]
 SHOP_CART_MODIFIERS = ['stables_shop.modifiers.FixedVATRate',]
+SHOP_PRODUCT_MODEL = ('stables_shop.product.Product', 'stables_shop')
 from decimal import Decimal
 SHOP_VAT = Decimal('0.24')
 

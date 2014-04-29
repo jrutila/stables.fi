@@ -1,4 +1,4 @@
-from shop.models import Product
+#from shop.models import Product
 from django.db import models
 from stables.models import TicketType
 from durationfield.db.models.fields.duration import DurationField
@@ -11,6 +11,7 @@ from stables.models import RiderInfo
 from stables.models import Course
 from django.utils import timezone
 import datetime
+from product import Product
 
 class DigitalShippingAddressModel(models.Model):
     name = models.TextField()
