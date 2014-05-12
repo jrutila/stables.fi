@@ -32,6 +32,7 @@ setup(
         'django-durationfield',
         'importlib',
         'django-bower',
+        'solid-i18n',
     ],
     zip_safe=False,
     dependency_links = [

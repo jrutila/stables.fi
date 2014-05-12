@@ -13,6 +13,11 @@ if ON_OPENSHIFT:
     DEBUG = False
     ALLOWED_HOSTS = ['.stables.fi', 'stables-alitur.rhcloud.com']
     SESSION_COOKIE_DOMAIN='.stables.fi'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
@@ -20,6 +25,7 @@ else:
     SESSION_COOKIE_DOMAIN=''
     DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
     EMAIL_PORT = 1025
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -175,6 +181,7 @@ MIDDLEWARE_CLASSES = (
     # Enable when adding more languages
     #'django.middleware.locale.LocaleMiddleware',
     #'babeldjango.middleware.LocaleMiddleware',
+    'solid_i18n.middleware.SolidLocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'tenant.middleware.AuthenticationMiddleware',
@@ -323,6 +330,10 @@ TENANT_MODEL = 'tenant.Client'
 
 SOUTH_DATABASE_ADAPTERS = {
     'default': 'south.db.postgresql_psycopg2',
+}
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

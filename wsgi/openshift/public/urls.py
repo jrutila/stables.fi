@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
+from solid_i18n.urls import solid_i18n_patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
@@ -18,7 +19,7 @@ urlpatterns += patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
     'document_root': settings.MEDIA_ROOT}))
 
-urlpatterns += i18n_patterns('',
+urlpatterns += solid_i18n_patterns('',
     # Examples:
     url(r'^', include('cms.urls'))
 )
