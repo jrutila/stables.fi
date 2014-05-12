@@ -21,6 +21,8 @@ def get_user(request):
                     request._cached_user = auth.get_user(request)
             else:
                 request._cached_user = AnonymousUser()
+        elif db.connection.schema_name == get_public_schema_name():
+            request._cached_user = auth.get_user(request)
         else:
             request._cached_user = AnonymousUser()
     return request._cached_user
@@ -47,6 +49,8 @@ class RestrictTenantStaffToAdminMiddleware(object):
                 tenant = get_tenant_model().objects.get(pk=request.session[TENANT_KEY])
                 if request.user.is_staff and tenant.schema_name != get_public_schema_name() and not request.session[TENANT_KEY] == db.connection.tenant.id:
                     return HttpResponseForbidden(msg)
+            elif db.connection.schema_name == get_public_schema_name():
+                pass
             else:
                 return HttpResponseForbidden(msg)
         
