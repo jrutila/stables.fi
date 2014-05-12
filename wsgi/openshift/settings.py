@@ -332,10 +332,6 @@ SOUTH_DATABASE_ADAPTERS = {
     'default': 'south.db.postgresql_psycopg2',
 }
 
-SOUTH_MIGRATION_MODULES = {
-    'easy_thumbnails': 'easy_thumbnails.south_migrations',
-}
-
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
