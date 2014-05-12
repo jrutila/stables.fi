@@ -16,8 +16,8 @@ if ON_OPENSHIFT:
 else:
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    ALLOWED_HOSTS = ['.talli.local',]
-    SESSION_COOKIE_DOMAIN='.talli.local'
+    ALLOWED_HOSTS = ['.localhost',]
+    SESSION_COOKIE_DOMAIN=''
     DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
     EMAIL_PORT = 1025
 
@@ -50,7 +50,7 @@ else:
             'ENGINE': 'tenant_schemas.postgresql_backend'
                 if not 'test' in sys.argv else 'django.db.backends.sqlite3',
             'NAME': 'talli',
-            'USER': 'hepokoti',                      # Not used with sqlite3.
+            'USER': 'talli',                      # Not used with sqlite3.
             'PASSWORD': '',                  # Not used with sqlite3.
             'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.

@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d1e139-bb75-427a-9b5f-a13c013462e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/talli_fi.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi/openshift/tenant/middleware.py" afterPath="$PROJECT_DIR$/wsgi/openshift/tenant/middleware.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsgi/openshift/settings.py" afterPath="$PROJECT_DIR$/wsgi/openshift/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/stables.fi.iml" afterPath="$PROJECT_DIR$/.idea/stables.fi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="stables.fi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +28,8 @@
       <file leaf-file-name="backends.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/backends.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <folding>
-                <element signature="e#0#53#0" expanded="true" />
-              </folding>
+            <state line="8" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="360">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,34 +37,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wsgi/openshift/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="27" selection-start="556" selection-end="556" vertical-scroll-proportion="-3.4972677" vertical-offset="2190" max-vertical-offset="4935">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/public/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="0" selection-start="3444" selection-end="3444" vertical-scroll-proportion="-19.375" vertical-offset="570" max-vertical-offset="1725">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cms_template.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/cms_template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="195">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="public.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/public.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="90">
+            <state line="318" column="4" selection-start="9962" selection-end="9962" vertical-scroll-proportion="0.95108694" vertical-offset="4230" max-vertical-offset="5760">
               <folding />
             </state>
           </provider>
@@ -80,10 +46,8 @@
       <file leaf-file-name="public.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/session/public.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="20" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <folding>
-                <element signature="e#0#82#0" expanded="true" />
-              </folding>
+            <state line="8" column="20" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="510">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,7 +55,7 @@
       <file leaf-file-name="cached_db.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/sessions/backends/cached_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
+            <state line="18" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1245">
               <folding />
             </state>
           </provider>
@@ -100,7 +64,7 @@
       <file leaf-file-name="backends.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/backends.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="6" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2070">
+            <state line="5" column="6" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="2100">
               <folding />
             </state>
           </provider>
@@ -110,9 +74,7 @@
         <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="31" column="0" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="8145">
-              <folding>
-                <element signature="e#1#40#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,7 +82,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+            <state line="13" column="0" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
@@ -140,8 +102,8 @@
     <option name="changedFiles">
       <list>
         <option value="$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/models.py" />
-        <option value="$PROJECT_DIR$/wsgi/openshift/settings.py" />
         <option value="$PROJECT_DIR$/wsgi/openshift/tenant/middleware.py" />
+        <option value="$PROJECT_DIR$/wsgi/openshift/settings.py" />
       </list>
     </option>
   </component>
@@ -177,7 +139,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,38 +247,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="wsgi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="openshift" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stables.fi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stables.fi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value=".openshift" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -421,27 +357,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.virtenv/talli.fi/bin/python" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="stables.fi" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://127.0.0.1:8000/" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -467,7 +383,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.virtenv/talli.fi/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="stables.fi" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -547,16 +483,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1922" height="1054" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2657754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26898396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -565,6 +499,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -608,11 +544,58 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
+    <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/backends.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+        <state line="8" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="360">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi/openshift/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="27" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="5835">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/session/public.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="20" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/sessions/backends/cached_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/backends.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="6" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="2100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="8145">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/settings.py">
@@ -640,9 +623,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="240">
-          <folding />
-        </state>
+        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="240" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/settings.py">
@@ -661,9 +642,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
@@ -675,9 +654,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
@@ -744,30 +721,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="9" column="38" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/utils/importlib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1178" selection-end="1178" vertical-scroll-proportion="0.94152045" vertical-offset="27" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="34" column="0" selection-start="1178" selection-end="1178" vertical-scroll-proportion="0.94152045" vertical-offset="27" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/dispatch/dispatcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="0" selection-start="5679" selection-end="5679" vertical-scroll-proportion="0.0" vertical-offset="2304" max-vertical-offset="4125">
-          <folding />
-        </state>
+        <state line="169" column="0" selection-start="5679" selection-end="5679" vertical-scroll-proportion="0.0" vertical-offset="2304" max-vertical-offset="4125" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.pycharmrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="577">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="577" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py">
@@ -831,9 +800,7 @@
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/session/public.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="20" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding>
-            <element signature="e#0#82#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -861,18 +828,14 @@
     <entry file="file://$USER_HOME$/.virtenv/talli.fi/lib/python2.7/site-packages/django/contrib/auth/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="0" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="8145">
-          <folding>
-            <element signature="e#1#40#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/tenant/backends.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="31" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -885,30 +848,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/cms_template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="549">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/public.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="549">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi/openshift/templates/public/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="3444" selection-end="3444" vertical-scroll-proportion="-19.375" vertical-offset="570" max-vertical-offset="1725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wsgi/openshift/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="27" selection-start="556" selection-end="556" vertical-scroll-proportion="-3.4972677" vertical-offset="2190" max-vertical-offset="4935">
+        <state line="318" column="4" selection-start="9962" selection-end="9962" vertical-scroll-proportion="0.95108694" vertical-offset="4230" max-vertical-offset="5760">
           <folding />
         </state>
       </provider>
