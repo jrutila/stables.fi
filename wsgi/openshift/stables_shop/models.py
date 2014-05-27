@@ -11,7 +11,7 @@ from stables.models import RiderInfo
 from stables.models import Course
 from django.utils import timezone
 import datetime
-from product import Product
+from shop.models import Product
 
 class DigitalShippingAddressModel(models.Model):
     name = models.TextField()
