@@ -97,7 +97,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATHS = (
-  os.path.join(PROJECT_DIR, 'locale')
+  os.path.join(PROJECT_DIR, 'locale'),
 )
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
@@ -148,6 +148,7 @@ BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_DIR, '..', 'components')
 BOWER_INSTALLED_APPS = (
         'momentjs',
         'underscore',
+        'jquery-slugify'
         )
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
@@ -338,6 +339,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
 SHOP_PAYMENT_BACKENDS = ['shop.payment.backends.prepayment.ForwardFundBackend',]
 SHOP_CART_MODIFIERS = ['stables_shop.modifiers.FixedVATRate',]
+SHOP_PRODUCT_MODEL = ('stables_shop.product.Product', 'stables_shop')
 from decimal import Decimal
 SHOP_VAT = Decimal('0.24')
 

@@ -6,7 +6,8 @@
     <title>{% settings "shop_name" %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="{% static "shop_theme/amelia/bootstrap.css" %}" rel="stylesheet" media="screen">
+    {% settings "shop_theme" as theme %}
+    <link href="{% static "shop_theme/"|add:theme|add:"/bootstrap.css" %}" rel="stylesheet" media="screen">
     {% block css %}
     {% endblock %}
   </head>
