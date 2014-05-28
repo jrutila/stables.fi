@@ -232,6 +232,7 @@ class SettingsForm(DefaultForm):
     shop_homepage = forms.CharField(help_text=_("Address for the main page (e.g. your homepage)"))
     payment_account_number = forms.CharField(help_text=_("Your bank account number"))
     payment_receiver = forms.CharField(help_text=_("Invoice receiver name"))
+    shop_theme = forms.ChoiceField(choices=(('cerulean', 'cerulean'), ('amelia', 'amelia')))
 
     def __init__(self, *args, **kwargs):
         initial = django_settings.all()
