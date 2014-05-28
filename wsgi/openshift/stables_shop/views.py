@@ -1,4 +1,6 @@
 from django import forms
+from django.shortcuts import redirect
+import django_settings
 from shop.views.checkout import CheckoutSelectionView
 from shop.models import AddressModel
 from django.views.generic.base import TemplateView
@@ -24,6 +26,7 @@ class DefaultHelper(FormHelper):
     label_class = "col-xs-2"
     field_class = "col-xs-10"
     form_tag = False
+    form_class = "row"
     disable_csrf = True
 
 def ret_name(self):
@@ -101,8 +104,15 @@ class ShopEditorMixin(object):
     def dispatch(self, request, *args, **kwargs):
         return super(ShopEditorMixin, self).dispatch(request, *args, **kwargs)
 
+class ShopSettingsSetMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        setform = SettingsForm()
+        for f in setform.fields:
+            if f not in setform.initial:
+                return redirect(reverse("shop-settings"))
+        return super(ShopSettingsSetMixin, self).dispatch(request, *args, **kwargs)
 
-class HomePageView(ShopEditorMixin, TemplateView):
+class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
     template_name = "stables_shop/index.html"
 
     def get_context_data(self, **kwargs):
@@ -215,3 +225,28 @@ class ShipView(ShopEditorMixin, FormView):
         from shop.shipping import api
         DigitalShipping(api.ShippingAPI()).ship(form.cleaned_data['order'])
         return super(ShipView, self).form_valid(form)
+
+
+class SettingsForm(DefaultForm):
+    shop_name = forms.CharField(help_text=_("Name of the shop shown in left upper corner"))
+    shop_homepage = forms.CharField(help_text=_("Address for the main page (e.g. your homepage)"))
+    payment_account_number = forms.CharField(help_text=_("Your bank account number"))
+    payment_receiver = forms.CharField(help_text=_("Invoice receiver name"))
+
+    def __init__(self, *args, **kwargs):
+        initial = django_settings.all()
+        kwargs['initial'] = initial
+        return super(SettingsForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        for f in self.fields:
+            django_settings.set('String', f, self.cleaned_data[f])
+
+class SettingsView(ShopEditorMixin, FormView):
+    template_name = 'stables_shop/generic_form.html'
+    success_url = '/s' #TODO: Bad!
+    form_class = SettingsForm
+
+    def form_valid(self, form):
+        form.save()
+        return super(SettingsView, self).form_valid(form)
