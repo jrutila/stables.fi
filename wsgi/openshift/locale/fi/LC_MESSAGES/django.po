@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-28 06:24+0300\n"
+"POT-Creation-Date: 2014-05-28 16:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,134 +57,6 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: stables_shop/backends.py:14
-msgid "Initiated"
-msgstr ""
-
-#: stables_shop/backends.py:15
-msgid "Activated"
-msgstr ""
-
-#: stables_shop/backends.py:16
-msgid "Failed"
-msgstr ""
-
-#: stables_shop/backends.py:17
-msgid "Canceled"
-msgstr ""
-
-#: stables_shop/backends.py:26
-msgid "Digital"
-msgstr ""
-
-#: stables_shop/models.py:32
-msgid "Ticket duration or absolute expire date must be set"
-msgstr ""
-
-#: stables_shop/modifiers.py:19
-msgid "VAT"
-msgstr ""
-
-#: stables_shop/views.py:140
-#, python-format
-msgid "User \"%s\" not found"
-msgstr ""
-
-#: stables_shop/views.py:143
-#, python-format
-msgid "User \"%s\" is too ambiguous"
-msgstr ""
-
-#: stables_shop/views.py:161
-msgid "Save"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:7
-#, python-format
-msgid "You can visit your shop <a href='%(shopurl)s'>here</a>."
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:9
-msgid "Unfinished orders"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:13
-#: stables_shop/templates/stables_shop/index.html:82
-#: stables_shop/templates/stables_shop/order_list.html:8
-msgid "Id"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:14
-#: stables_shop/templates/stables_shop/order_list.html:9
-msgid "Status"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:15
-#: stables_shop/templates/stables_shop/order_list.html:10
-msgid "Target"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:16
-#: stables_shop/templates/stables_shop/order_list.html:11
-msgid "Product"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:17
-#: stables_shop/templates/stables_shop/order_list.html:13
-msgid "Total"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:18
-msgid "Is paid"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:19
-msgid "Is shipped"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:20
-#: stables_shop/templates/stables_shop/order_list.html:12
-msgid "Transaction"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:21
-msgid "Actions"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:60
-msgid "Paid"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:63
-msgid "Ship"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:74
-#, python-format
-msgid "<a href='%(orderurl)s'>Finished orders</a>."
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:78
-msgid "Products"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:83
-msgid "Active"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:84
-msgid "Name"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:85
-#: stables_shop/templates/stables_shop/index.html:94
-msgid "Edit"
-msgstr ""
-
-#: stables_shop/templates/stables_shop/index.html:100
-msgid "Add new ..."
-msgstr ""
-
 #: templates/api.html:6
 msgid "API information"
 msgstr ""
@@ -202,42 +74,50 @@ msgid ""
 "You can insert following snippet to your site:\n"
 msgstr ""
 
-#: templates/base.html:67 templates/registration/password_change_form.html:4
+#: templates/base.html:58
+msgid "Settings"
+msgstr "Asetukset"
+
+#: templates/base.html:62
+msgid "Shop settings"
+msgstr "Kaupan asetukset"
+
+#: templates/base.html:77 templates/registration/password_change_form.html:4
 msgid "Change password"
 msgstr ""
 
-#: templates/base.html:68
+#: templates/base.html:78
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:75 templates/registration/login.html:31
+#: templates/base.html:85 templates/registration/login.html:31
 #: templates/registration/login.html:46
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:93
+#: templates/base.html:103
 msgid "Calendar"
 msgstr "Kalenteri"
 
-#: templates/base.html:96
+#: templates/base.html:106
 msgid "Courses"
 msgstr "Tunnit"
 
-#: templates/base.html:97
+#: templates/base.html:107
 msgid "Horses"
 msgstr "Hevoset"
 
-#: templates/base.html:98
+#: templates/base.html:108
 msgid "Reports"
 msgstr "Raportit"
 
-#: templates/base.html:99
+#: templates/base.html:109
 msgid "Users"
 msgstr "Käyttäjät"
 
-#: templates/base.html:100
+#: templates/base.html:110
 msgid "shop"
-msgstr ""
+msgstr "kauppa"
 
 #: templates/registration/logged_out.html:12
 msgid "Logged out!"
@@ -387,20 +267,14 @@ msgstr "Hei"
 msgid "Your orders"
 msgstr "Tilauksesi"
 
-#: templates/shop/checkout/thank_you.html:6
+#: templates/shop/checkout/thank_you.html:5
 msgid "Thank you for your order!"
 msgstr "Kiitos tilauksestasi"
 
 #: templates/shop/checkout/thank_you.html:7
-msgid "We will handle your order"
-msgstr "Käsittelemme tilauksesi"
+msgid "Your order has been placed"
+msgstr "Käsittelemme tilauksen pian"
 
 #: templates/shop/checkout/thank_you.html:8
 msgid "Back to the main page"
 msgstr "Takaisin kaupan etusivulle"
-
-#~ msgid "Remove from sorting"
-#~ msgstr "Poista järjestelystä"
-
-#~ msgid "Group by"
-#~ msgstr "Järjestele"
