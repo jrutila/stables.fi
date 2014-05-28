@@ -21,9 +21,9 @@ class DigitalShippingAddressModel(models.Model):
 
 class TicketProduct(Product):
     ticket = models.ForeignKey(TicketType)
-    amount = models.PositiveIntegerField(default=1)
-    duration = DurationField(blank=True, null=True)
-    expires = models.DateField(blank=True, null=True)
+    amount = models.PositiveIntegerField(help_text=_("Amount of tickets included in this product."))
+    duration = DurationField(blank=True, null=True, help_text=_("Relative duration of the given product. For example 30 days, 90 days. If this is empty, you must insert expire date."))
+    expires = models.DateField(blank=True, null=True, help_text=_("Absolute expiration date for the given product. For example 2014-12-31. If this is empty, you must insert duration."))
 
     class Meta:
         pass
