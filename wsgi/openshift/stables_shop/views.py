@@ -37,7 +37,7 @@ funcType = type(AddressModel.as_text)
 class NoShippingForm(forms.ModelForm):
     class Meta:
         model = AddressModel
-        fields = ['name', ]
+        fields = ['name', 'phone_number' ]
 
     def save(self):
         obj = super(forms.ModelForm, self).save()
@@ -47,7 +47,7 @@ class NoShippingForm(forms.ModelForm):
 class FinnishPaymentForm(forms.ModelForm):
     class Meta:
         model = AddressModel
-        fields = ['name', 'address', 'zip_code', 'city' ]
+        fields = ['name', 'phone_number' ]
 
     def save(self):
         obj = super(forms.ModelForm, self).save()
@@ -117,7 +117,7 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['orders'] = Order.objects.all().order_by('status', '-id')
+        context['orders'] = Order.objects.all().order_by('-status', 'id')
         context['products'] = Product.objects.all().order_by('active')
         context['newproducts'] = products()
         return context

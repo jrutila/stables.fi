@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from shop.shipping.backends.flat_rate import FlatRateShipping
@@ -47,16 +48,20 @@ class DigitalShipping(FlatRateShipping):
     def ship(self, order):
         for oi in order.items.all():
             product = oi.product
-            activator = product.get_activator()
-            activator.product = product
-            activator.order_item = oi
-            activator.order = order
-            activator.save()
-            activator.activate()
+            if hasattr(product, 'get_activator'):
+                activator = product.get_activator()
+                activator.product = product
+                activator.order_item = oi
+                activator.order = order
+                activator.save()
+                activator.activate()
+        order.status = Order.SHIPPED
+        order.save()
 
 def is_shipped(self):
-    act_count = self.activators.count()
-    return act_count > 0 and self.activators.filter(status=ProductActivator.ACTIVATED).count() == act_count
+    return self.status == Order.SHIPPED
+    #act_count = self.activators.count()
+    #return act_count >= 0 and self.activators.filter(status=ProductActivator.ACTIVATED).count() == act_count
 
 Order.is_shipped = is_shipped
 
@@ -108,6 +113,7 @@ class PayTrailBackend(object):
         order = Order.objects.get(pk=order_number)
         order.status = Order.CONFIRMED
         order.save()
+        return HttpResponseRedirect(self.shop.get_finished_url())
 
     def paytrail_payment_failure(self, request):
         pass
@@ -118,3 +124,4 @@ class PayTrailBackend(object):
         order_number = self._check_authcode(request)
         order = Order.objects.get(pk=order_number)
         api.PaymentAPI().confirm_payment(order, order.order_total, order.id, method)
+        return HttpResponse("ok")

@@ -26,6 +26,9 @@ else:
     DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
     EMAIL_PORT = 1025
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    SOUTH_MIGRATION_MODULES = {
+        'easy_thumbnails': 'easy_thumbnails.south_migrations',
+    }
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -314,7 +317,7 @@ TENANT_APPS = (
     'reportengine',
 
     'shop',
-    'shop.addressmodel',
+    #'shop.addressmodel',
     'stables_shop',
 
     'django_settings',
@@ -340,6 +343,7 @@ SHOP_SHIPPING_BACKENDS = ['stables_shop.backends.DigitalShipping',]
 SHOP_PAYMENT_BACKENDS = ['stables_shop.backends.PayTrailBackend', 'shop.payment.backends.prepayment.ForwardFundBackend']
 SHOP_CART_MODIFIERS = ['stables_shop.modifiers.FixedVATRate',]
 SHOP_PRODUCT_MODEL = ('stables_shop.product.Product', 'stables_shop')
+SHOP_ADDRESS_MODEL = 'stables_shop.addressmodel.Address'
 from decimal import Decimal
 SHOP_VAT = Decimal('0.24')
 
