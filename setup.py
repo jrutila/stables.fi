@@ -33,6 +33,7 @@ setup(
         'importlib',
         'django-bower',
         'solid-i18n',
+        'requests'
     ],
     zip_safe=False,
     dependency_links = [
