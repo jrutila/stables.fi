@@ -2,6 +2,8 @@ __author__ = 'jorutila'
 import requests
 import json
 import hashlib
+from django.conf import settings
+from decimal import Decimal
 
 MERCHANT_ID="13466"
 MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
@@ -15,36 +17,24 @@ def createPayment(order, amount, transaction_id, urls):
         "currency": "EUR",
         "locale": "fi_FI",
         "urlSet": urls,
-        "orderDetails": {
-            "includeVat": "1",
-            "contact": {
-                "telephone": "041234567",
-                "mobile": "041234567",
-                "email": "tester@esimerkkikauppa.fi",
-                "firstName": "Simon",
-                "lastName": "Seller",
-                "companyName": "",
-                "address": {
-                    "street": "Test street 1",
-                    "postalCode": "12340",
-                    "postalOffice": "Helsinki",
-                    "country": "FI"
-                }
-            },
-            "products": [
-                {
-                    "title": "10ratsastuskortti",
-                    "code": "3",
-                    "amount": "1.00",
-                    "price": "100.00",
-                    "vat": "10.00",
-                    "discount": "0.00",
-                    "type": "1"
-                }
-            ]
-        }
+        "price": str(order.order_total)
     }
-    r = requests.post(SERVICE_URL,headers=headers, auth=AUTH_HELP, data=json.dumps(data))
+    """
+    VAT = getattr(settings, 'SHOP_VAT', Decimal('0.24'))
+    for o in order.items.all():
+        data['orderDetails']['products'].append(
+            {
+                "title": o.product_name,
+                "code": str(o.product.id),
+                "amount": str(o.quantity),
+                "price": str((o.line_total*(1+VAT)).quantize(Decimal('0.01'))),
+                "vat": str(VAT*100),
+                "discount": "0.00",
+                "type": "1"
+            }
+        )
+    """
+    r = requests.post(SERVICE_URL, headers=headers, auth=AUTH_HELP, data=json.dumps(data))
     r.raise_for_status()
     return r.json()['url']
 
