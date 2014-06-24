@@ -37,10 +37,12 @@
             <td>{{ o.get_status_display }}</td>
             {% if o.is_paid and not o.is_shipped %}
             <td>
-                <input type="text" name="target_name" value="{{ o.shipping_address_text }}"/>
+                <input type="text" name="name" value="{{ o.ship_help.0 }}"/>
+                {{ o.ship_help.1 }}
+                <input type="hidden" name="phone_number" value="{{ o.ship_help.1 }}" />
             </td>
             {% else %}
-            <td>{{ o.shipping_address_text }}</td>
+            <td>{{ o.ship_help.0 }} ({{ o.ship_help.1 }})</td>
             {% endif %}
             <td>
                 {% for i in o.items.all %}

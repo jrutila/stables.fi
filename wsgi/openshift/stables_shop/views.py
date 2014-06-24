@@ -41,7 +41,7 @@ class NoShippingForm(forms.ModelForm):
 
     def save(self):
         obj = super(forms.ModelForm, self).save()
-        obj.as_text = funcType(ret_name, obj, AddressModel)
+        #obj.as_text = funcType(ret_name, obj, AddressModel)
         return obj
 
 class FinnishPaymentForm(forms.ModelForm):
@@ -117,7 +117,11 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['orders'] = Order.objects.all().order_by('-status', 'id')
+        orders = Order.objects.all().order_by('-status', 'id').prefetch_related('orderpayment_set')
+        orders = list(orders)
+        for o, val in enumerate(orders):
+            orders[o].ship_help = val.shipping_address_text.split('\n')
+        context['orders'] = orders
         context['products'] = Product.objects.all().order_by('active')
         context['newproducts'] = products()
         return context
@@ -130,20 +134,26 @@ class DefaultForm(forms.Form):
         self.helper.form_tag = True
         self.helper.disable_csrf = False
 
+def _getAddressText(data):
+    addr = AddressModel()
+    addr.name = data['name']
+    addr.phone_number = data['phone_number']
+    return addr.as_text()
+
 class ShipForm(DefaultForm):
-    order = forms.ModelChoiceField(queryset=Order.objects.all())
+    order = forms.ModelChoiceField(queryset=Order.objects.all(), widget=forms.HiddenInput)
     target = forms.ModelChoiceField(queryset=UserProfile.objects.all())
-    target_name = forms.CharField(required=False)
+    name = forms.CharField(required=False)
+    phone_number = forms.CharField(required=False)
 
     def clean(self):
         data = super(ShipForm, self).clean()
         if 'target' not in data:
-            if 'target_name' in data:
-                data['order'].shipping_address_text = data['target_name']
+            if 'name' in data:
+                data['order'].shipping_address_text = _getAddressText(data)
                 data['order'].save()
             try:
-                data['target'] = UserProfile.objects.find(
-                    data['order'].shipping_address_text)
+                data['target'] = UserProfile.objects.find(data['name'])
                 del self.errors['target']
             except UserProfile.DoesNotExist:
                 self.errors['target'] = ErrorList(
@@ -152,9 +162,11 @@ class ShipForm(DefaultForm):
                 self.errors['target'] = ErrorList(
                         [_('User "%s" is too ambiguous') % data['order'].shipping_address_text])
         else:
-            data['order'].shipping_address_text = data['target'].__unicode__()
+            data['name'] = "%s %s" % (data['target'].user.first_name, data['target'].user.last_name)
+            data['order'].shipping_address_text = _getAddressText(data)
             data['order'].save()
         return data
+
 
 def prodform(prodmodel):
     class ProductForm(forms.ModelForm):

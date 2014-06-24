@@ -19,6 +19,9 @@ class DigitalShippingAddressModel(models.Model):
     def as_text(self):
         return self.name
 
+def _getUserName(address):
+    return address.split('\n')[0]
+
 class TicketProduct(Product):
     ticket = models.ForeignKey(TicketType)
     amount = models.PositiveIntegerField(help_text=_("Amount of tickets included in this product."))
@@ -43,7 +46,7 @@ class TicketProductActivator(ProductActivator):
     duration = DurationField(blank=True, null=True)
 
     def activate(self):
-        user = UserProfile.objects.find(self.order.shipping_address_text)
+        user = UserProfile.objects.find(_getUserName(self.order.shipping_address_text))
         if user:
             self.rider = user.rider
             for i in range(0, self.product.amount):
@@ -101,7 +104,7 @@ class EnrollProductActivator(ProductActivator):
     rider = models.ForeignKey(RiderInfo, null=True, blank=True)
 
     def activate(self):
-        user = UserProfile.objects.find(self.order.shipping_address_text)
+        user = UserProfile.objects.find(_getUserName(self.order.shipping_address_text))
 
         if user:
             self.rider = user.rider

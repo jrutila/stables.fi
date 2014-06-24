@@ -6,10 +6,8 @@ from django.db import models
 from django.conf import settings
 
 BASE_ADDRESS_TEMPLATE = \
-    _("""
-Name: %(name)s,
-Phone: %(phone)s
-""")
+    _("""%(name)s
+%(phone)s""")
 ADDRESS_TEMPLATE = getattr(settings, 'SHOP_ADDRESS_TEMPLATE', BASE_ADDRESS_TEMPLATE)
 USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
