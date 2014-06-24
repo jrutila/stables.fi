@@ -3,12 +3,12 @@ import requests
 import json
 import hashlib
 from django.conf import settings
+import django_settings
 from decimal import Decimal
 
 MERCHANT_ID="13466"
 MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
 SERVICE_URL="https://payment.paytrail.com/api-payment/create"
-AUTH_HELP=(MERCHANT_ID, MERCHANT_PASS)
 headers = {'content-type': 'application/json', 'X-Verkkomaksut-Api-Version': '1'}
 
 def createPayment(order, amount, transaction_id, urls):
@@ -34,6 +34,10 @@ def createPayment(order, amount, transaction_id, urls):
             }
         )
     """
+    AUTH_HELP=(
+        django_settings.get('MERCHANT_ID', MERCHANT_ID),
+        django_settings.get('MERCHANT_PASS', MERCHANT_PASS)
+    )
     r = requests.post(SERVICE_URL, headers=headers, auth=AUTH_HELP, data=json.dumps(data))
     r.raise_for_status()
     return r.json()['url']
