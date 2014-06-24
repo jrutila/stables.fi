@@ -1,8 +1,14 @@
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from shop.shipping.backends.flat_rate import FlatRateShipping
 from django.conf.urls import patterns, url
 from django.db import models
-from shop.models import Product, OrderItem, Order
+from shop.models import Product, OrderItem, Order, Cart
+from shop.util.decorators import order_required, on_method
+from datetime import date
+import paytrail
+from django.core.urlresolvers import reverse
 
 class ProductActivator(models.Model):
     INITIATED = 10
@@ -42,15 +48,80 @@ class DigitalShipping(FlatRateShipping):
     def ship(self, order):
         for oi in order.items.all():
             product = oi.product
-            activator = product.get_activator()
-            activator.product = product
-            activator.order_item = oi
-            activator.order = order
-            activator.save()
-            activator.activate()
+            if hasattr(product, 'get_activator'):
+                activator = product.get_activator()
+                activator.product = product
+                activator.order_item = oi
+                activator.order = order
+                activator.save()
+                activator.activate()
+        order.status = Order.SHIPPED
+        order.save()
 
 def is_shipped(self):
-    act_count = self.activators.count()
-    return act_count > 0 and self.activators.filter(status=ProductActivator.ACTIVATED).count() == act_count
+    return self.status == Order.SHIPPED
+    #act_count = self.activators.count()
+    #return act_count >= 0 and self.activators.filter(status=ProductActivator.ACTIVATED).count() == act_count
 
 Order.is_shipped = is_shipped
+
+class PayTrailBackend(object):
+    url_namespace='paytrail-payment'
+    backend_name = _('Paytrail payment')
+    template = 'shop/paytrail-payment-notify.html'
+
+    def __init__(self, shop):
+        self.shop = shop
+
+    def get_urls(self):
+        urlpatterns = patterns('',
+                url(r'^$', self.paytrail_payment_view, name='paytrail-payment'),
+                url(r'^success$', self.paytrail_payment_success, name='paytrail-success'),
+                url(r'^notify$', self.paytrail_payment_notify, name='paytrail-notify'),
+                url(r'^failure$', self.paytrail_payment_failure, name='paytrail-failure'),
+                               )
+        return urlpatterns
+
+    @on_method(order_required)
+    def paytrail_payment_view(self, request):
+        order = self.shop.get_order(request)
+        amount = self.shop.get_order_total(order)
+        transaction_id = date.today().strftime('%Y') + '%06d' % order.id
+        urls = {
+            'success': request.build_absolute_uri(reverse('paytrail-success')),
+            'notification': request.build_absolute_uri(reverse('paytrail-notify')),
+            'failure': request.build_absolute_uri(reverse('paytrail-failure')),
+            'pending': ''
+                }
+        redirect_url = paytrail.createPayment(order, amount, order.id, urls)
+        order.status = Order.CONFIRMING
+        order.save()
+        return redirect(redirect_url)
+
+    def _check_authcode(self, request):
+        order_number = request.GET.get('ORDER_NUMBER')
+        timestamp = request.GET.get('TIMESTAMP')
+        paid = request.GET.get('PAID')
+        method = request.GET.get('METHOD')
+        authCode = paytrail.calcAuthCode(order_number, timestamp, paid, method)
+        if authCode != request.GET.get('RETURN_AUTHCODE').lower():
+            raise Exception("Authcode mismatch!")
+        return order_number
+
+    def paytrail_payment_success(self, request):
+        order_number = self._check_authcode(request)
+        order = Order.objects.get(pk=order_number)
+        order.status = Order.CONFIRMED
+        order.save()
+        return HttpResponseRedirect(self.shop.get_finished_url())
+
+    def paytrail_payment_failure(self, request):
+        pass
+
+    def paytrail_payment_notify(self, request):
+        method = request.GET.get('METHOD')
+        from shop.payment import api
+        order_number = self._check_authcode(request)
+        order = Order.objects.get(pk=order_number)
+        api.PaymentAPI().confirm_payment(order, order.order_total, order.id, method)
+        return HttpResponse("ok")
