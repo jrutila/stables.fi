@@ -347,7 +347,7 @@ SHOP_CART_MODIFIERS = ['stables_shop.modifiers.FixedVATRate',]
 SHOP_PRODUCT_MODEL = ('stables_shop.product.Product', 'stables_shop')
 SHOP_ADDRESS_MODEL = 'stables_shop.addressmodel.Address'
 from decimal import Decimal
-SHOP_VAT = Decimal('0.24')
+SHOP_VAT = Decimal('0.10')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
