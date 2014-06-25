@@ -6,8 +6,8 @@ from django.conf import settings
 import django_settings
 from decimal import Decimal
 
-MERCHANT_ID="13466"
-MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
+#MERCHANT_ID="13466"
+#MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
 SERVICE_URL="https://payment.paytrail.com/api-payment/create"
 headers = {'content-type': 'application/json', 'X-Verkkomaksut-Api-Version': '1'}
 
@@ -35,15 +35,15 @@ def createPayment(order, amount, transaction_id, urls):
         )
     """
     AUTH_HELP=(
-        django_settings.get('MERCHANT_ID', MERCHANT_ID),
-        django_settings.get('MERCHANT_PASS', MERCHANT_PASS)
+        django_settings.get('MERCHANT_ID'),
+        django_settings.get('MERCHANT_PASS')
     )
     r = requests.post(SERVICE_URL, headers=headers, auth=AUTH_HELP, data=json.dumps(data))
     r.raise_for_status()
     return r.json()['url']
 
 def calcAuthCode(order_number, timestamp, paid, method):
-    auth = order_number+"|"+timestamp+"|"+paid+"|"+method+"|"+MERCHANT_PASS
+    auth = order_number+"|"+timestamp+"|"+paid+"|"+method+"|"+django_settings.get('MERCHANT_PASS')
     return hashlib.md5(auth).hexdigest()
 
 if __name__ == "__main__":
