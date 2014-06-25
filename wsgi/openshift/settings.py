@@ -29,6 +29,8 @@ else:
     SOUTH_MIGRATION_MODULES = {
         'easy_thumbnails': 'easy_thumbnails.south_migrations',
     }
+    MERCHANT_ID="13466"
+    MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),

@@ -116,7 +116,11 @@ class PayTrailBackend(object):
         return HttpResponseRedirect(self.shop.get_finished_url())
 
     def paytrail_payment_failure(self, request):
-        pass
+        order_number = self._check_authcode(request)
+        order = Order.objects.get(pk=order_number)
+        order.status = Order.CANCELED
+        order.save()
+        return HttpResponseRedirect(self.shop.get_cancel_url())
 
     def paytrail_payment_notify(self, request):
         method = request.GET.get('METHOD')
