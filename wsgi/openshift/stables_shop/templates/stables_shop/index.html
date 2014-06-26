@@ -64,6 +64,7 @@
                     <input type="hidden" name="order" value="{{ o.id }}" />
                     <button>{% trans "Ship" %}</button>
                 {% endif %}
+                <button name='cancel' onclick="return confirm('{% trans "Are you sure?" %}');">{% trans "Cancel" %}</button>
             </td>
            </form>
         </tr>

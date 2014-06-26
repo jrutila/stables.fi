@@ -1,4 +1,5 @@
 from django import forms
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 import django_settings
 from shop.views.checkout import CheckoutSelectionView
@@ -117,7 +118,7 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        orders = Order.objects.all().order_by('-status', 'id').prefetch_related('orderpayment_set')
+        orders = Order.objects.exclude(status=Order.CANCELED).order_by('-status', 'id').prefetch_related('orderpayment_set')
         orders = list(orders)
         for o, val in enumerate(orders):
             orders[o].ship_help = val.shipping_address_text.split('\n')
@@ -213,7 +214,16 @@ class PayForm(DefaultForm):
     transaction_id = forms.CharField()
     payment_method = forms.CharField()
 
-class PayView(ShopEditorMixin, FormView):
+class OrderCancelMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if (request.POST.get("cancel") != None):
+            o = Order.objects.get(pk=request.POST.get("order"))
+            o.status = Order.CANCELED
+            o.save()
+            return HttpResponseRedirect(reverse('shop-home'))
+        return super(OrderCancelMixin, self).dispatch(request, *args, **kwargs)
+
+class PayView(ShopEditorMixin, OrderCancelMixin, FormView):
     template_name = 'stables_shop/generic_form.html'
     success_url = '/s' #TODO: Bad!
     form_class = PayForm
@@ -228,7 +238,7 @@ class PayView(ShopEditorMixin, FormView):
                 )
         return super(PayView, self).form_valid(form)
 
-class ShipView(ShopEditorMixin, FormView):
+class ShipView(ShopEditorMixin, OrderCancelMixin, FormView):
     template_name = 'stables_shop/generic_form.html'
     success_url = '/s' #TODO: Bad!
     form_class = ShipForm
