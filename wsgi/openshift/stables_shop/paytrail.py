@@ -34,8 +34,8 @@ def createPayment(order, amount, transaction_id, urls):
         )
     """
     AUTH_HELP=(
-        getattr(settings, 'MERCHANT_ID', django_settings.get('MERCHANT_ID', default=None)),
-        getattr(settings, 'MERCHANT_PASS', django_settings.get('MERCHANT_PASS', default=None))
+        getattr(settings, 'MERCHANT_ID', django_settings.get('merchant_id', default=None)),
+        getattr(settings, 'MERCHANT_PASS', django_settings.get('merchant_pass', default=None))
     )
     r = requests.post(SERVICE_URL, headers=headers, auth=AUTH_HELP, data=json.dumps(data))
     r.raise_for_status()
@@ -45,7 +45,7 @@ def calcAuthCode(order_number, timestamp, paid, method):
     auth = order_number+"|"+timestamp
     if paid: auth += "|"+paid
     if method: auth += "|"+method
-    auth += "|"+getattr(settings, 'MERCHANT_PASS', django_settings.get('MERCHANT_PASS', default=None))
+    auth += "|"+getattr(settings, 'MERCHANT_PASS', django_settings.get('merchant_pass', default=None))
     return hashlib.md5(auth).hexdigest()
 
 if __name__ == "__main__":

@@ -21,7 +21,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.layout import ButtonHolder
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned, ValidationError
+
 
 class DefaultHelper(FormHelper):
     label_class = "col-xs-2"
@@ -252,18 +253,41 @@ class ShipView(ShopEditorMixin, OrderCancelMixin, FormView):
 class SettingsForm(DefaultForm):
     shop_name = forms.CharField(help_text=_("Name of the shop shown in left upper corner"))
     shop_homepage = forms.CharField(help_text=_("Address for the main page (e.g. your homepage)"))
-    payment_account_number = forms.CharField(help_text=_("Your bank account number"))
-    payment_receiver = forms.CharField(help_text=_("Invoice receiver name"))
     shop_theme = forms.ChoiceField(choices=(('cerulean', 'cerulean'), ('amelia', 'amelia')))
+    payment_account_number = forms.CharField(help_text=_("Your bank account number"), required=False)
+    payment_receiver = forms.CharField(help_text=_("Invoice receiver name"), required=False)
+
+    merchant_id = forms.CharField(help_text=_("Your Paytrail merchant id"), required=False)
+    merchant_pass = forms.CharField(help_text=_("Your Paytrail merchant secret"), required=False)
 
     def __init__(self, *args, **kwargs):
         initial = django_settings.all()
         kwargs['initial'] = initial
         return super(SettingsForm, self).__init__(*args, **kwargs)
 
+    def clean(self):
+        cleaned_data = super(SettingsForm, self).clean()
+        pan = cleaned_data.get('payment_account_number')
+        pr = cleaned_data.get('payment_receiver')
+        mi = cleaned_data.get('merchant_id')
+        mp = cleaned_data.get('merchant_pass')
+        if bool(pan) != bool(pr):
+            msg = _('Both payment account number and payment receiver must be set')
+            self._errors['payment_account_number'] = self.error_class([msg])
+            self._errors['payment_receiver'] = self.error_class([msg])
+        if bool(mi) != bool(mp):
+            msg = _('Both merchant id and secret must be set')
+            self._errors['merchant_id'] = self.error_class([msg])
+            self._errors['merchant_pass'] = self.error_class([msg])
+        return cleaned_data
+
     def save(self):
         for f in self.fields:
-            django_settings.set('String', f, self.cleaned_data[f])
+            value = self.cleaned_data.get(f)
+            if value:
+                django_settings.set('String', f, value)
+            else:
+                django_settings.set('String', f, '', validate=False)
 
 class SettingsView(ShopEditorMixin, FormView):
     template_name = 'stables_shop/generic_form.html'
