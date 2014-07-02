@@ -13,7 +13,7 @@
 <h1>Valitse tuote</h1>
 
 <div class="list-group">
-{% for object in object_list %}
+{% for object in object_list|orderproducts %}
   <div class="list-group-item col-md-6">
       <h4 class="list-group-item-heading">{{ object.get_name }}</h4>
       <form method="post" action="{% url "cart" %}">

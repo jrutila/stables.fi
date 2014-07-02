@@ -27,3 +27,7 @@ def add_vat(value):
     TWO = Decimal(10) ** -2
     final = value*(1+settings.SHOP_VAT)
     return final.quantize(TWO)
+
+@register.filter
+def orderproducts(products):
+    return sorted(products, key=lambda p: p.name.lower())

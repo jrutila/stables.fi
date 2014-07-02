@@ -124,7 +124,7 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
         for o, val in enumerate(orders):
             orders[o].ship_help = val.shipping_address_text.split('\n')
         context['orders'] = orders
-        context['products'] = Product.objects.all().order_by('active')
+        context['products'] = Product.objects.all().order_by('-active', 'name')
         context['newproducts'] = products()
         return context
 
