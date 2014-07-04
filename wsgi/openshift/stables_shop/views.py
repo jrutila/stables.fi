@@ -88,6 +88,14 @@ class ShopRedirectView(RedirectView):
     def get_redirect_url(self):
         return reverse('product_list')
 
+class InfoView(TemplateView):
+    template_name = 'stables_shop/info.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(InfoView, self).get_context_data(**kwargs)
+        context['content'] = django_settings.get('shop_info')
+        return context
+
 _products = None
 def products():
     global _products
@@ -254,6 +262,8 @@ class SettingsForm(DefaultForm):
     shop_name = forms.CharField(help_text=_("Name of the shop shown in left upper corner"))
     shop_homepage = forms.CharField(help_text=_("Address for the main page (e.g. your homepage)"))
     shop_theme = forms.ChoiceField(choices=(('cerulean', 'cerulean'), ('amelia', 'amelia')))
+    shop_info = forms.CharField(help_text=_("Text that is visible on shop info page"), widget=forms.Textarea, max_length=2000)
+
     payment_account_number = forms.CharField(help_text=_("Your bank account number"), required=False)
     payment_receiver = forms.CharField(help_text=_("Invoice receiver name"), required=False)
 
@@ -285,7 +295,10 @@ class SettingsForm(DefaultForm):
         for f in self.fields:
             value = self.cleaned_data.get(f)
             if value:
-                django_settings.set('String', f, value)
+                t = 'String'
+                if (len(value) > 254):
+                    t = 'LongString'
+                django_settings.set(t, f, value)
             else:
                 django_settings.set('String', f, '', validate=False)
 

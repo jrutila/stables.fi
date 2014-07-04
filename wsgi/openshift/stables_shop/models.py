@@ -12,6 +12,15 @@ from stables.models import Course
 from django.utils import timezone
 import datetime
 from shop.models import Product
+from django_settings.models import Model as SettingsModel
+from django_settings.models import registry
+
+class LongString(models.Model):
+   value = models.TextField()
+
+   class Meta:
+       abstract = True
+registry.register(LongString)
 
 class DigitalShippingAddressModel(models.Model):
     name = models.TextField()

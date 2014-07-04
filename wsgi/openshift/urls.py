@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from shop import urls as shop_urls
-from stables_shop.views import NoShippingAddressCheckoutSelectionView
+from stables_shop.views import NoShippingAddressCheckoutSelectionView, InfoView
 from stables_shop.views import ShopRedirectView
 from django.http import HttpResponse
 # Uncomment the next two lines to enable the admin:
@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^api-help/', 'views.api'),
     url(r'^shopper/checkout/$', NoShippingAddressCheckoutSelectionView.as_view()),
+    url(r'^shopper/info/$', InfoView.as_view(), name='shop-info'),
     url(r'^shopper/', include(shop_urls)),
     url(r'^shop/$', ShopRedirectView.as_view(), name='shop-in'),
     url(r'^s/', include('stables_shop.urls')),
