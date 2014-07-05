@@ -151,9 +151,10 @@ STATICFILES_FINDERS = (
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_DIR, '..', 'components')
 
 BOWER_INSTALLED_APPS = (
-        'momentjs',
+        'momentjs#2.7.0',
         'underscore',
-        'jquery-slugify'
+        'jquery-slugify',
+        'bootstrap#3.2.0'
         )
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
