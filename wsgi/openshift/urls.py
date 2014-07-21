@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from shop import urls as shop_urls
 from stables_shop.views import NoShippingAddressCheckoutSelectionView, InfoView
+from stables_shop.views import ParticipationPayment, ParticipationPaymentSuccess
+from stables_shop.views import ParticipationPaymentNotify, ParticipationPaymentFailure
+
 from stables_shop.views import ShopRedirectView
 from django.http import HttpResponse
 # Uncomment the next two lines to enable the admin:
@@ -18,6 +21,10 @@ urlpatterns = patterns('',
     (r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^api-help/', 'views.api'),
+    url(r'^shopper/pay/(?P<hash>\w+)$', ParticipationPayment.as_view(), name='shop-pay'),
+    url(r'^shopper/pay/(?P<hash>\w+)/success$', ParticipationPaymentSuccess.as_view(), name='shop-pay-success'),
+    url(r'^shopper/pay/(?P<hash>\w+)/notify$', ParticipationPaymentNotify.as_view(), name='shop-pay-notify'),
+    url(r'^shopper/pay/(?P<hash>\w+)/failure$', ParticipationPaymentFailure.as_view(), name='shop-pay-failure'),
     url(r'^shopper/checkout/$', NoShippingAddressCheckoutSelectionView.as_view()),
     url(r'^shopper/info/$', InfoView.as_view(), name='shop-info'),
     url(r'^shopper/', include(shop_urls)),

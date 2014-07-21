@@ -1,6 +1,6 @@
 #from shop.models import Product
 from django.db import models
-from stables.models import TicketType
+from stables.models import TicketType, Participation
 from durationfield.db.models.fields.duration import DurationField
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -120,3 +120,10 @@ class EnrollProductActivator(ProductActivator):
             self.product.course.enroll(user)
             self.status = self.ACTIVATED
             self.save()
+
+class PartShortUrl(models.Model):
+    participation = models.ForeignKey(Participation, unique=True)
+    hash = models.CharField(unique=True, max_length=12)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.hash, self.participation)

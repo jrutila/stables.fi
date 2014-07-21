@@ -1,11 +1,13 @@
 from django import forms
-from django.http import HttpResponseRedirect
+from django.forms import HiddenInput
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect
 import django_settings
+from shop.util.order import add_order_to_request
 from shop.views.checkout import CheckoutSelectionView
 from shop.models import AddressModel
 from django.views.generic.base import TemplateView
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView, View
 from django.views.generic import CreateView
 from django.views.generic import FormView
 from django.views.generic import ListView
@@ -13,7 +15,7 @@ from django.views.generic import RedirectView
 from shop.models import Order
 from shop.models import Product
 from stables_shop.backends import DigitalShipping
-from stables.models import UserProfile
+from stables.models import UserProfile, Participation, pay_participation
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
@@ -22,7 +24,8 @@ from crispy_forms.layout import Submit
 from crispy_forms.layout import ButtonHolder
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import MultipleObjectsReturned, ValidationError
-
+from models import PartShortUrl
+import paytrail
 
 class DefaultHelper(FormHelper):
     label_class = "col-xs-2"
@@ -96,6 +99,76 @@ class InfoView(TemplateView):
         context['content'] = django_settings.get('shop_info')
         return context
 
+class ParticipationPayForm(forms.Form):
+    participation_id = forms.fields.IntegerField(widget=HiddenInput)
+
+def _check_authcode(self, request):
+    order_number = request.GET.get('ORDER_NUMBER')
+    timestamp = request.GET.get('TIMESTAMP')
+    paid = request.GET.get('PAID')
+    method = request.GET.get('METHOD')
+    authCode = paytrail.calcAuthCode(order_number, timestamp, paid, method)
+    if authCode != request.GET.get('RETURN_AUTHCODE').lower():
+        raise Exception("Authcode mismatch!")
+    return order_number
+
+class ParticipationPaymentNotify(View): # DetailView):
+    def get(self, request, *args, **kwargs):
+        part_id = _check_authcode(self, self.request)
+        object = PartShortUrl.objects.get(hash=self.kwargs['hash']).participation
+        if str(object.id) != part_id:
+            raise Exception("Authcode mismatch!")
+        pay_participation(object, object.get_saldo()[2], method='paytrail')
+        return HttpResponse('ok')
+
+class ParticipationPaymentFailure(TemplateView): # DetailView):
+    pass
+
+class ParticipationPaymentSuccess(TemplateView): # DetailView):
+    template_name = 'stables_shop/pay_participation.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ParticipationPaymentSuccess, self).get_context_data(**kwargs)
+        part_id = _check_authcode(self, self.request)
+        ctx['object'] = PartShortUrl.objects.get(hash=self.kwargs['hash']).participation
+        if str(ctx['object'].id) != part_id:
+            raise Exception("Authcode mismatch!")
+        ctx['paid'] = True
+        return ctx
+
+class ParticipationPayment(FormView): # DetailView):
+    template_name = 'stables_shop/pay_participation.html'
+    model = Participation
+    form_class = ParticipationPayForm
+
+    def get_initial(self):
+        initial = super(ParticipationPayment, self).get_initial()
+        self.object = PartShortUrl.objects.get(hash=self.kwargs['hash']).participation
+        initial['participation_id'] = self.object.id
+        return initial
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ParticipationPayment, self).get_context_data(**kwargs)
+        ctx['object'] = self.object
+        ctx['total'] = self.object.get_saldo()[0] * -1
+        return ctx
+
+    def form_valid(self, form):
+        user = self.object.participant.user
+        from decimal import Decimal
+        order_total = self.object.get_saldo()[0] * -1
+        urls = {
+            'success': self.request.build_absolute_uri(reverse('shop-pay-success', kwargs=self.kwargs)),
+            'notification': self.request.build_absolute_uri(reverse('shop-pay-notify', kwargs=self.kwargs)),
+            'failure': self.request.build_absolute_uri(reverse('shop-pay-failure', kwargs=self.kwargs)),
+            'pending': ''
+        }
+        order = Order()
+        order.id = self.object.id
+        order.order_total = order_total
+        self.success_url = paytrail.createPayment(order,order_total,order.id,urls)
+        return super(ParticipationPayment, self).form_valid(form)
+
 _products = None
 def products():
     global _products
@@ -104,7 +177,7 @@ def products():
         for ct in ContentType.objects.filter(app_label='stables_shop'):
             if issubclass(ct.model_class(), Product):
                 _products[ct.model_class()] = ct
-    return _products
+    return _product
 
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
