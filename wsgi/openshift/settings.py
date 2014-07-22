@@ -152,9 +152,10 @@ BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_DIR, '..', 'components')
 
 BOWER_INSTALLED_APPS = (
         'momentjs#2.7.0',
-        'underscore',
-        'jquery-slugify',
-        'bootstrap#3.2.0'
+        'underscore#1.6.0',
+        'jquery-slugify#1.0.3',
+        'bootstrap#3.2.0',
+        'jquery-validate#1.13.0'
         )
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
