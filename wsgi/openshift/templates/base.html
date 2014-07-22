@@ -145,5 +145,11 @@
   </script>
   {% render_block "js" %}
   <script src="{% static 'js/calendar.js' %}"></script>
+
+  <!--[if gt IE 8]><!-->
+   <script type="text/javascript">
+       $("button[form]").click(function() { $("#"+$(this).attr('form')).submit(); });
+   </script>
+   <!--<![endif]-->
  </body>
 </html>
