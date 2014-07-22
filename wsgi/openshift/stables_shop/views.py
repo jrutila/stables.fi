@@ -177,7 +177,7 @@ def products():
         for ct in ContentType.objects.filter(app_label='stables_shop'):
             if issubclass(ct.model_class(), Product):
                 _products[ct.model_class()] = ct
-    return _product
+    return _products
 
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
