@@ -142,6 +142,10 @@
   <script type="text/javascript">
     apiUrl="{% url "api_v1_top_level" api_name="v1" %}";
     dashboardUrl="{% url "newboard" %}";
+
+      $(document).ajaxError(function() {
+          alert('Tapahtui virhe! Lataa sivu uudelleen ja koita uudestaan.')
+      })
   </script>
   {% render_block "js" %}
   <script src="{% static 'js/calendar.js' %}"></script>
