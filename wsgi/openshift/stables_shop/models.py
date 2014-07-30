@@ -14,6 +14,7 @@ import datetime
 from shop.models import Product
 from django_settings.models import Model as SettingsModel
 from django_settings.models import registry
+from django.core.urlresolvers import reverse
 
 class LongString(models.Model):
    value = models.TextField()
@@ -121,9 +122,23 @@ class EnrollProductActivator(ProductActivator):
             self.status = self.ACTIVATED
             self.save()
 
+def get_short_url_for(partid):
+    shortUrl = PartShortUrl.objects.get_or_create(participation=Participation.objects.get(pk=partid))[0]
+    return shortUrl
+
+import string
+from markov_passwords import MarkovChain, finnish
+chain = MarkovChain(c for c in finnish.lower() if c in string.ascii_lowercase)
+
+def generate_hash():
+    import itertools
+    hash = ''.join(itertools.islice(chain, 12))
+    return hash
+
 class PartShortUrl(models.Model):
     participation = models.ForeignKey(Participation, unique=True)
-    hash = models.CharField(unique=True, max_length=12)
+    hash = models.CharField(unique=True, max_length=12, default=generate_hash)
 
     def __unicode__(self):
         return "%s - %s" % (self.hash, self.participation)
+

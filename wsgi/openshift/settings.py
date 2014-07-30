@@ -31,6 +31,7 @@ else:
     }
     MERCHANT_ID="13466"
     MERCHANT_PASS="6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
+    TEST_SMS="+358447671369"
 
 ADMINS = (
     ('Juho Rutila', 'juho.rutila@sandis.fi'),
@@ -296,6 +297,7 @@ SHARED_APPS = (
 
     'public',
     'djangobower',
+    'django_twilio',
 )
 
 TENANT_APPS = (
@@ -350,6 +352,8 @@ SHOP_PRODUCT_MODEL = ('stables_shop.product.Product', 'stables_shop')
 SHOP_ADDRESS_MODEL = 'stables_shop.addressmodel.Address'
 from decimal import Decimal
 SHOP_VAT = Decimal('0.10')
+
+PAYMENTLINK_METHOD = 'stables_shop.models.get_short_url_for'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
