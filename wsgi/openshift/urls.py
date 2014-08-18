@@ -8,6 +8,8 @@ from stables_shop.views import ShopRedirectView
 from django.http import HttpResponse
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from forms import EmailAuthenticationForm
+
 admin.autodiscover()
 
 #from rest_framework import routers
@@ -19,6 +21,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     (r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', { 'authentication_form': EmailAuthenticationForm }, name='login'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^api-help/', 'views.api'),
     url(r'^shopper/pay/(?P<hash>\w+)$', ParticipationPayment.as_view(), name='shop-pay'),
