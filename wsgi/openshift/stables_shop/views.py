@@ -26,6 +26,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import MultipleObjectsReturned, ValidationError
 from models import PartShortUrl
 import paytrail
+from shop.backends_pool import backends_pool
 
 class DefaultHelper(FormHelper):
     label_class = "col-xs-2"
@@ -80,10 +81,25 @@ class NoShippingAddressCheckoutSelectionView(CheckoutSelectionView):
         form.helper = DefaultHelper()
         return form
 
+    def get_billing_backends_choices(self):
+        billing_backends = backends_pool.get_payment_backends_list()
+        return tuple([(x.url_namespace, getattr(x, 'backend_verbose_name', x.backend_name)) for x in billing_backends])
+
     def get_billing_and_shipping_selection_form(self):
         form = super(NoShippingAddressCheckoutSelectionView, self).get_billing_and_shipping_selection_form()
         form.fields['shipping_method'].widget.attrs['class'] = "hidden"
         form.fields['shipping_method'].label = ""
+        choices = self.get_billing_backends_choices()
+        tpl = []
+        for c in choices:
+            if c[0] == 'paytrail-payment' \
+                    and django_settings.get('merchant_id') != "":
+                tpl.append(c)
+            #and django_settings.exists['payment_account_number']\
+            if c[0] == 'advance-payment' \
+                    and django_settings.get('payment_account_number') != "":
+                tpl.append(c)
+        form.fields['payment_method'] = forms.ChoiceField(choices=tpl, label=_('Payment method'))
         form.helper = DefaultHelper()
         return form
 
