@@ -219,7 +219,7 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
         orders = Order.objects.exclude(status=Order.CANCELED).order_by('-status', 'id').prefetch_related('orderpayment_set')
         orders = list(orders)
         for o, val in enumerate(orders):
-            orders[o].ship_help = val.shipping_address_text.split('\n')
+            orders[o].ship_help = val.shipping_address_text.split('\n') if val.shipping_address_text else []
         context['orders'] = orders
         context['products'] = Product.objects.all().order_by('-active', 'name')
         context['newproducts'] = products()
