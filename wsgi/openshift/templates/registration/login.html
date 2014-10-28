@@ -42,6 +42,8 @@ Tästä <a href="http://windows.microsoft.com/fi-fi/internet-explorer/download-i
         <input type="password" id="password" name="password" placeholder="{{ form.password.label }}" class="form-control input-lg password-field" value=""/>
     </div>
 
+    <a href="{% url 'password_reset' %}">{% trans 'Forgotten your password or username?' %}</a
+
     <div class="login-actions">
         <button class="login-action btn btn-primary" type="submit">{% trans "Log in" %}</button>
         <input type="hidden" name="next" value="{{ next }}" />
