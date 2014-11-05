@@ -152,6 +152,14 @@ class ParticipationPaymentSuccess(TemplateView): # DetailView):
         ctx['paid'] = True
         return ctx
 
+class ParticipationPaymentRedirect(RedirectView):
+    permanent = False
+    def get_redirect_url(self, **kwargs):
+        part = Participation.objects.get(id=self.kwargs['id'])
+        # TODO: Check rights for the participation
+        pshr = PartShortUrl.objects.create(participation=part)
+        return reverse('shop-pay', kwargs={'hash': pshr.hash })
+
 class ParticipationPayment(FormView): # DetailView):
     template_name = 'stables_shop/pay_participation.html'
     model = Participation

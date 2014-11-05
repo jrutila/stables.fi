@@ -123,8 +123,10 @@ class EnrollProductActivator(ProductActivator):
             self.save()
 
 def get_short_url_for(partid):
-    shortUrl = PartShortUrl.objects.get_or_create(participation=Participation.objects.get(pk=partid))[0]
-    return shortUrl
+     shortUrl = PartShortUrl.objects.filter(participation=partid)
+     if shortUrl.count() == 1:
+         return reverse('shop-pay', kwargs={ 'hash': shortUrl[0].hash })
+     return reverse('shop-pay', kwargs={ 'id': partid })
 
 import string
 from markov_passwords import MarkovChain, finnish
