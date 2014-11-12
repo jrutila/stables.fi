@@ -122,8 +122,11 @@ class EnrollProductActivator(ProductActivator):
             self.status = self.ACTIVATED
             self.save()
 
-def get_short_url_for(partid):
+def get_short_url_for(partid, create=False):
      shortUrl = PartShortUrl.objects.filter(participation=partid)
+     if shortUrl.count() == 0 and create:
+         PartShortUrl.objects.create(participation=Participation.objects.get(pk=partid))
+         shortUrl = PartShortUrl.objects.filter(participation=partid)
      if shortUrl.count() == 1:
          return reverse('shop-pay', kwargs={ 'hash': shortUrl[0].hash })
      return reverse('shop-pay', kwargs={ 'id': partid })
