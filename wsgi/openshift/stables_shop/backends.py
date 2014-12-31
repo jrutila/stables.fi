@@ -47,14 +47,15 @@ class DigitalShipping(FlatRateShipping):
 
     def ship(self, order):
         for oi in order.items.all():
-            product = oi.product
-            if hasattr(product, 'get_activator'):
-                activator = product.get_activator()
-                activator.product = product
-                activator.order_item = oi
-                activator.order = order
-                activator.save()
-                activator.activate()
+            for x in range(1, oi.quantity):
+                product = oi.product
+                if hasattr(product, 'get_activator'):
+                    activator = product.get_activator()
+                    activator.product = product
+                    activator.order_item = oi
+                    activator.order = order
+                    activator.save()
+                    activator.activate()
         order.status = Order.SHIPPED
         order.save()
 
