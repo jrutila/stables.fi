@@ -24,7 +24,6 @@
     </thead>
     <tbody>
     {% for o in orders %}
-      {% if not o.is_paid or not o.is_shipped %}
         <tr>
           <form method="POST"
                 {% if not o.is_paid %}
@@ -70,7 +69,6 @@
             </td>
            </form>
         </tr>
-      {% endif %}
     {% endfor %}
     </tbody>
 </table>

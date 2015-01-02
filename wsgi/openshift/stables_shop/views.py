@@ -224,7 +224,8 @@ class HomePageView(ShopEditorMixin, ShopSettingsSetMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        orders = Order.objects.exclude(status=Order.CANCELED).order_by('-status', 'id').prefetch_related('orderpayment_set')
+        orders = Order.objects.exclude(status=Order.CANCELED).exclude(status=Order.SHIPPED).order_by('-status', 'id')\
+            .prefetch_related('orderpayment_set', 'items')
         orders = list(orders)
         for o, val in enumerate(orders):
             orders[o].ship_help = val.shipping_address_text.split('\n') if val.shipping_address_text else []
