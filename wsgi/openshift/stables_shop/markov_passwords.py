@@ -1,4 +1,4 @@
-# coding: utf8
+# coding: utf-8
 """
 
     Use Markov chains to generate random text that sounds Japanese.

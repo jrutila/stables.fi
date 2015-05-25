@@ -335,6 +335,9 @@ INSTALLED_APPS = SHARED_APPS + TENANT_APPS + ('tenant_schemas', )
 
 if not ON_OPENSHIFT:
     INSTALLED_APPS = INSTALLED_APPS + ('devserver', 'debug_toolbar',)
+    DEBUG_TOOLBAR_CONFIG = {
+      'JQUERY_URL':'',
+    }
 
 if 'test' in sys.argv:
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']

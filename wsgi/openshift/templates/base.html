@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{% static 'theme/css/ui-lightness/jquery-ui-1.10.0.custom.min.css' %}" type="text/css"/>
     <link href="{% static 'theme/js/plugins/lightbox/themes/evolution-dark/jquery.lightbox.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" type="text/css"/>
-    <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap-responsive.min.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/base-admin-3-responsive.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'theme/css/font-awesome.css' %}" type="text/css"/>
@@ -30,6 +29,7 @@
     <link rel="stylesheet" href="{% static 'theme/css/pages/signin.css' %}" type="text/css"/>
     {% endblock base_css %}
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <script src="{% static 'libs/jquery/js/jquery-1.9.1.min.js' %}"></script>
     {% render_block "css" %}
  </head>
  <body>
@@ -102,7 +102,6 @@
             <a href="{% url 'newboard' %}"><i class="fa fa-calendar"></i><span>{% trans 'Calendar'|capfirst %}</span></a>
             </li>
                 
-            <li {% active request 'list_course' %}><a href="{% url 'list_course' %}"><i class="fa fa-list-ul"></i><span>{% trans 'Courses'|capfirst %}</span></a></li>
             <li {% active request 'list_horse' %}><a href="{% url 'list_horse' %}"><i class="fa fa-heart"></i><span>{% trans 'Horses'|capfirst %}</span></a></li>
             <li {% active request 'reports-list' %}><a href="{% url 'reports-list' %}"><i class="fa fa-bar-chart-o"></i><span>{% trans 'Reports'|capfirst %}</span></a></li>
             <li {% active request 'user_default' %}><a href="{% url 'user_default' %}"><i class="fa fa-group"></i><span>{% trans 'Users'|capfirst %}</span></a></li>
@@ -136,7 +135,6 @@
     -->
 
   <!-- scripts concatenated and minified via build script -->
-  <script src="{% static 'libs/jquery/js/jquery-1.9.1.min.js' %}"></script>
   <script src="{% static 'libs/jquery/js/jquery-ui-1.10.3.custom.min.js' %}"></script>
   <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'theme/js/plugins/msgGrowl/js/msgGrowl.js' %}"></script>
