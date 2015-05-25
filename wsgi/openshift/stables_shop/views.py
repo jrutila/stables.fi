@@ -297,12 +297,14 @@ def prodform(prodmodel):
 class EditProduct(ShopEditorMixin, UpdateView):
     model = Product
     template_name = "stables_shop/generic_form.html"
+    success_url = '/s' #TODO: Bad!
     def get_form_class(self):
         return prodform(self.object.__class__)
 
 class CreateProduct(ShopEditorMixin, CreateView):
     model = Product
     template_name = "stables_shop/generic_form.html"
+    success_url = '/s' #TODO: Bad!
 
     def get_form_class(self):
         ct = ContentType.objects.get(pk=self.kwargs['content_type_id'])
