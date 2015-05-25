@@ -13,6 +13,17 @@ def get_features(context):
                 f.plchld[p.slot] = p
     return context
 
+@register.inclusion_tag('public/pricing_list.html', takes_context=True)
+def get_pricings(context):
+    context['root'] = get_page_from_path('pricing')
+    if context['root'] and context['root'].children.filter(published=True):
+        context['pricings'] = context['root'].children.filter(published=True)
+        for f in context['pricings']:
+            setattr(f, 'plchld', {})
+            for p in f.placeholders.all():
+                f.plchld[p.slot] = p
+    return context
+
 @register.inclusion_tag('public/_features.html', takes_context=True)
 def render_feature(context):
     context['root'] = get_page_from_path('features')
