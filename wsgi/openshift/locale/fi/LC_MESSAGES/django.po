@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 16:59+0300\n"
+"POT-Creation-Date: 2015-05-05 07:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,9 +33,9 @@ msgstr ""
 msgid "Message from"
 msgstr ""
 
-#: public/templates/public/email.txt:3
+#: public/templates/public/email.txt:3 stables_shop/addressmodel.py:21
 msgid "Phone number"
-msgstr ""
+msgstr "Puhelinnumero"
 
 #: public/templates/public/frontpage_template.html:40
 msgid "Contact"
@@ -43,18 +43,243 @@ msgstr ""
 
 #: public/templates/public/frontpage_template.html:44
 msgid "Your name"
-msgstr ""
+msgstr "Nimesi"
 
 #: public/templates/public/frontpage_template.html:45
 msgid "Your email"
-msgstr ""
+msgstr "Sähköpostiosoitteesi"
 
 #: public/templates/public/frontpage_template.html:46
 msgid "Message"
-msgstr ""
+msgstr "Viesti"
 
 #: public/templates/public/frontpage_template.html:47
 msgid "Send"
+msgstr "Lähetä"
+
+#: stables_shop/addressmodel.py:9
+#, python-format
+msgid ""
+"%(name)s\n"
+"%(phone)s"
+msgstr ""
+
+#: stables_shop/addressmodel.py:20
+#: stables_shop/templates/stables_shop/index.html:87
+msgid "Name"
+msgstr "Nimi"
+
+#: stables_shop/addressmodel.py:24
+msgid "Address"
+msgstr "Osoite"
+
+#: stables_shop/addressmodel.py:25
+msgid "Addresses"
+msgstr "Osoitteet"
+
+#: stables_shop/backends.py:20
+msgid "Initiated"
+msgstr ""
+
+#: stables_shop/backends.py:21
+msgid "Activated"
+msgstr ""
+
+#: stables_shop/backends.py:22
+msgid "Failed"
+msgstr ""
+
+#: stables_shop/backends.py:23
+msgid "Canceled"
+msgstr ""
+
+#: stables_shop/backends.py:32
+msgid "Digital"
+msgstr ""
+
+#: stables_shop/backends.py:71
+msgid "Paytrail payment"
+msgstr ""
+
+#: stables_shop/models.py:37
+msgid "Amount of tickets included in this product."
+msgstr "Kertojen määrä tällä kortilla"
+
+#: stables_shop/models.py:38
+msgid ""
+"Relative duration of the given product. For example 30 days, 90 days. If "
+"this is empty, you must insert expire date."
+msgstr "Kortin voimassaoloaika. Esimerkiksi '30 days' tai '90 days'. Jos jätät "
+"tämän tyhjäksi, tulee vanhenemispäivään syöttää tieto."
+
+#: stables_shop/models.py:39
+msgid ""
+"Absolute expiration date for the given product. For example 2014-12-31. If "
+"this is empty, you must insert duration."
+msgstr ""
+"Absoluuttinen vanhenemispäivä. Esimerkiksi 2015-12-31."
+
+#: stables_shop/models.py:46
+msgid "Ticket duration or absolute expire date must be set"
+msgstr "Voimassaoloaika tai vanhenemispäivä pitää asettaa"
+
+#: stables_shop/modifiers.py:19
+msgid "VAT"
+msgstr "alv"
+
+#: stables_shop/product.py:11
+msgid "The whole product price excluding VAT."
+msgstr "Tuotteen kokonaishinta ilman alvia."
+
+#: stables_shop/views.py:102
+msgid "Payment method"
+msgstr "Maksutapa"
+
+#: stables_shop/views.py:268
+#, python-format
+msgid "User \"%s\" not found"
+msgstr ""
+
+#: stables_shop/views.py:271
+#, python-format
+msgid "User \"%s\" is too ambiguous"
+msgstr ""
+
+#: stables_shop/views.py:291
+msgid "Save"
+msgstr "Tallenna"
+
+#: stables_shop/views.py:362
+msgid "Name of the shop shown in left upper corner"
+msgstr ""
+
+#: stables_shop/views.py:363
+msgid "Address for the main page (e.g. your homepage)"
+msgstr ""
+
+#: stables_shop/views.py:365
+msgid "Text that is visible on shop info page"
+msgstr ""
+
+#: stables_shop/views.py:367
+msgid "Your bank account number"
+msgstr ""
+
+#: stables_shop/views.py:368
+msgid "Invoice receiver name"
+msgstr ""
+
+#: stables_shop/views.py:370
+msgid "Your Paytrail merchant id"
+msgstr ""
+
+#: stables_shop/views.py:371
+msgid "Your Paytrail merchant secret"
+msgstr ""
+
+#: stables_shop/views.py:385
+msgid "Both payment account number and payment receiver must be set"
+msgstr ""
+
+#: stables_shop/views.py:389
+msgid "Both merchant id and secret must be set"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:7
+#, python-format
+msgid "You can visit your shop <a href='%(shopurl)s'>here</a>."
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:9
+msgid "Unfinished orders"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:13
+#: stables_shop/templates/stables_shop/index.html:85
+#: stables_shop/templates/stables_shop/order_list.html:8
+msgid "Id"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:14
+#: stables_shop/templates/stables_shop/order_list.html:9
+msgid "Order date"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:15
+#: stables_shop/templates/stables_shop/order_list.html:10
+msgid "Status"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:16
+#: stables_shop/templates/stables_shop/order_list.html:11
+msgid "Target"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:17
+#: stables_shop/templates/stables_shop/order_list.html:12
+#, fuzzy
+msgid "Product"
+msgstr "Tuotteen nimi"
+
+#: stables_shop/templates/stables_shop/index.html:18
+#: stables_shop/templates/stables_shop/order_list.html:14
+#, fuzzy
+msgid "Total"
+msgstr "Rivin summa"
+
+#: stables_shop/templates/stables_shop/index.html:19
+msgid "Is paid"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:20
+msgid "Is shipped"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:21
+#: stables_shop/templates/stables_shop/order_list.html:13
+msgid "Transaction"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:22
+msgid "Actions"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:63
+msgid "Paid"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:66
+msgid "Ship"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:68
+msgid "Are you sure?"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:68
+msgid "Cancel"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:77
+#, python-format
+msgid "<a href='%(orderurl)s'>Finished orders</a>."
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:81
+msgid "Products"
+msgstr "Tuotteet"
+
+#: stables_shop/templates/stables_shop/index.html:86
+msgid "Active"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:88
+#: stables_shop/templates/stables_shop/index.html:97
+msgid "Edit"
+msgstr ""
+
+#: stables_shop/templates/stables_shop/index.html:103
+msgid "Add new ..."
 msgstr ""
 
 #: templates/api.html:6
@@ -74,48 +299,46 @@ msgid ""
 "You can insert following snippet to your site:\n"
 msgstr ""
 
-#: templates/base.html:58
+#: templates/base.html:53
 msgid "Settings"
 msgstr "Asetukset"
 
-#: templates/base.html:62
+#: templates/base.html:57
 msgid "Shop settings"
 msgstr "Kaupan asetukset"
 
-#: templates/base.html:77 templates/registration/password_change_form.html:4
+#: templates/base.html:73 templates/registration/password_change_form.html:4
+#: templates/registration/password_reset_form.html:4
 msgid "Change password"
-msgstr ""
+msgstr "Vaihda salasana"
 
-#: templates/base.html:78
+#: templates/base.html:74
 msgid "Logout"
-msgstr ""
+msgstr "Kirjaudu ulos"
 
-#: templates/base.html:85 templates/registration/login.html:31
-#: templates/registration/login.html:46
+#: templates/base.html:81 templates/registration/login.html:31
+#: templates/registration/login.html:48
+#: templates/registration/password_reset_complete.html:23
 msgid "Log in"
-msgstr ""
+msgstr "Kirjaudu sisään"
 
-#: templates/base.html:103
+#: templates/base.html:102
 msgid "Calendar"
 msgstr "Kalenteri"
 
-#: templates/base.html:106
-msgid "Courses"
-msgstr "Tunnit"
-
-#: templates/base.html:107
+#: templates/base.html:105
 msgid "Horses"
 msgstr "Hevoset"
 
-#: templates/base.html:108
+#: templates/base.html:106
 msgid "Reports"
 msgstr "Raportit"
 
-#: templates/base.html:109
+#: templates/base.html:107
 msgid "Users"
 msgstr "Käyttäjät"
 
-#: templates/base.html:110
+#: templates/base.html:108
 msgid "shop"
 msgstr "kauppa"
 
@@ -132,6 +355,10 @@ msgstr ""
 "Kirjauduit onnistuneesti ulos. Voit <a href=\"%(login_url)s\">kirjautua</a> "
 "uudelleen."
 
+#: templates/registration/login.html:45
+msgid "Forgotten your password or username?"
+msgstr "Unohdito salasanasi?"
+
 #: templates/registration/password_change_done.html:4
 #: templates/registration/password_change_done.html:10
 msgid "Password change successful"
@@ -142,20 +369,27 @@ msgid "Your password was changed."
 msgstr "Salasanasi on vaihdettu."
 
 #: templates/registration/password_change_form.html:4
+#: templates/registration/password_reset_form.html:4
 msgid "Documentation"
 msgstr ""
 
 #: templates/registration/password_change_form.html:4
+#: templates/registration/password_reset_form.html:4
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
 #: templates/registration/password_change_form.html:7
+#: templates/registration/password_reset_complete.html:6
+#: templates/registration/password_reset_confirm.html:6
+#: templates/registration/password_reset_done.html:6
+#: templates/registration/password_reset_form.html:7
 msgid "Home"
 msgstr "Koti"
 
 #: templates/registration/password_change_form.html:8
 #: templates/registration/password_change_form.html:12
 #: templates/registration/password_change_form.html:20
+#: templates/registration/password_reset_form.html:8
 msgid "Password change"
 msgstr "Salasnan vaihto"
 
@@ -184,7 +418,105 @@ msgid "Password (again)"
 msgstr ""
 
 #: templates/registration/password_change_form.html:61
+#: templates/registration/password_reset_confirm.html:34
 msgid "Change my password"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:7
+#: templates/registration/password_reset_confirm.html:11
+#: templates/registration/password_reset_done.html:7
+#: templates/registration/password_reset_form.html:12
+#: templates/registration/password_reset_form.html:20
+msgid "Password reset"
+msgstr "Salasanan nollaus"
+
+#: templates/registration/password_reset_complete.html:11
+#: templates/registration/password_reset_complete.html:19
+msgid "Password reset complete"
+msgstr "Salasanan nollaus onnistui"
+
+#: templates/registration/password_reset_complete.html:21
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "Olet vaihtanut salasanasi. Voit kirjautua nyt."
+
+#: templates/registration/password_reset_confirm.html:7
+msgid "Password reset confirmation"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:22
+msgid "Enter new password"
+msgstr "Syötä uusi salasana"
+
+#: templates/registration/password_reset_confirm.html:27
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:31
+msgid "New password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:33
+msgid "Confirm password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:42
+#, fuzzy
+msgid "Password reset unsuccessful"
+msgstr "Salasanan vaihto onnistui"
+
+#: templates/registration/password_reset_confirm.html:44
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:11
+#: templates/registration/password_reset_done.html:18
+#, fuzzy
+msgid "Password reset successful"
+msgstr "Salasanan vaihto onnistui"
+
+#: templates/registration/password_reset_done.html:20
+msgid ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:9
+#, fuzzy
+msgid "Thanks for using our site!"
+msgstr "Kiitos tilauksestasi"
+
+#: templates/registration/password_reset_form.html:27
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: templates/registration/password_reset_form.html:34
+msgid "Email address:"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:41
+msgid "Reset my password"
+msgstr ""
+
+#: templates/registration/password_reset_subject.txt:2
+#, python-format
+msgid "Password reset on %(site_name)s"
 msgstr ""
 
 #: templates/reportengine/list.html:11
@@ -267,14 +599,11 @@ msgstr "Hei"
 msgid "Your orders"
 msgstr "Tilauksesi"
 
-#: templates/shop/checkout/thank_you.html:5
-msgid "Thank you for your order!"
-msgstr "Kiitos tilauksestasi"
+#~ msgid "Courses"
+#~ msgstr "Tunnit"
 
-#: templates/shop/checkout/thank_you.html:7
-msgid "Your order has been placed"
-msgstr "Käsittelemme tilauksen pian"
+#~ msgid "Your order has been placed"
+#~ msgstr "Käsittelemme tilauksen pian"
 
-#: templates/shop/checkout/thank_you.html:8
-msgid "Back to the main page"
-msgstr "Takaisin kaupan etusivulle"
+#~ msgid "Back to the main page"
+#~ msgstr "Takaisin kaupan etusivulle"
