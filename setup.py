@@ -11,7 +11,7 @@ setup(
     url='',
     install_requires=[ 
         'Django==1.5',
-        'django-tenant-schemas',
+        'django-tenant-schemas==1.4.4',
         'django-reusableapps==0.1.1',
         'django-grappelli',
         'django-stables==dev',

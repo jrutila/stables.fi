@@ -99,6 +99,7 @@ class EnrollProduct(Product):
         return EnrollProductActivator()
 
 def check_active(sender, instance, created, **kwargs):
+    return
     if instance.course.is_full():
         EnrollProduct.objects.filter(course=instance.course).update(active=False)
     elif instance.course.get_occurrences()[0].start < timezone.now():
