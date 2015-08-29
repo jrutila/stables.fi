@@ -55,6 +55,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url "shop-settings" %}">{%  trans "Shop settings" %}</a></li>
+                        <li><a href="{% url "api-help" %}">{%  trans "Website integration" %}</a></li>
                     </ul>
                 </li>
                       {% endif %}
@@ -135,6 +136,8 @@
 
   <!-- scripts concatenated and minified via build script -->
   <script src="{% static 'libs/jquery/js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'underscore/underscore.js' %}"></script>
+  <script type='text/javascript' src="{% static 'js/backbone-min.js' %}"></script>
   <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'theme/js/plugins/msgGrowl/js/msgGrowl.js' %}"></script>
   <script src="{% static 'theme/js/plugins/lightbox/jquery.lightbox.min.js' %}"></script>
@@ -144,6 +147,7 @@
   <script src="{% static 'theme/js/Application.js' %}"></script>
   <script src="{% static 'js/base.js' %}"></script>
   <script src="{% static 'theme/js/demo/signin.js' %}"></script>
+
   <script type="text/javascript">
     apiUrl="{% url "api_v1_top_level" api_name="v1" %}";
     dashboardUrl="{% url "newboard" %}";

@@ -1,4 +1,4 @@
-(function () {
+(function ($target) {
 
         function loadScript(url, callback) {
             var script = document.createElement("script")
@@ -28,7 +28,6 @@ $('head').append("<script type='text/javascript' src='http://cdnjs.cloudflare.co
 
 var eventTemplate = '<span <% if (cancelled) { %>style="text-decoration: line-through; font-weight: bold; color: red;"<% } %>><% if (typeof original_start !== "undefined") { %> <%= original_start.format("HH:mm") %> &#8658; <%= start.format("HH:mm") %>-<%= end.format("HH:mm") %> <% } else { %> <%= start.format("HH:mm") %>-<%= end.format("HH:mm") %> <% } %> <%= title %></span> <% if (!cancelled && typeof free_slots !== "undefined") { %><b>tilaa</b>!<% } else if (cancelled) { %>Peruttu!<% } %>';
 
-var $target = (typeof(target) != "undefined" && $(target)) || $('#stables-timetable');
 var url = $target.attr('data-url');
 var start = moment().format("YYYY-MM-DD");
 var end = moment().add('days', $target.attr('data-days')).format("YYYY-MM-DD");
@@ -66,4 +65,4 @@ $.ajax(url+'api/timetable/?start='+start+'&end='+end)
         });
         });
 
-})();
+})((typeof(target) != "undefined" && $(target)) || $('#stables-timetable'));
