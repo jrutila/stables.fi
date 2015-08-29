@@ -2,7 +2,7 @@ from django.conf import settings
 
 from shop.cart.cart_modifiers_base import BaseCartModifier
 from django.utils.translation import ugettext_lazy as _
-from decimal import Decimal
+from decimal import *
 
 class FixedVATRate(BaseCartModifier):
     """
@@ -13,8 +13,8 @@ class FixedVATRate(BaseCartModifier):
     """
 
     def get_extra_cart_price_field(self, cart, request):
+        getcontext().rounding = ROUND_HALF_UP
         taxes = settings.SHOP_VAT * cart.subtotal_price
-        TWO = Decimal(10) ** -2
-        taxes = taxes.quantize(TWO)
+        taxes = Decimal(format(taxes, '.2f'))
         to_append = (_('VAT'), taxes)
         return to_append
