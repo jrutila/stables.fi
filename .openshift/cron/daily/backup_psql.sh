@@ -3,5 +3,5 @@
 # by Skye Book <skye.book@gmail.com>
  
 NOW="$(date +"%Y-%m-%d")"
-FILENAME="$OPENSHIFT_DATA_DIR/$OPENSHIFT_APP_NAME.$NOW.backup.sql.gz"
-$OPENSHIFT_POSTGRESQL_PATH_ELEMENT/pg_dump $OPENSHIFT_APP_NAME | gzip > $FILENAME
+FILENAME="$OPENSHIFT_DATA_DIR/backup/$OPENSHIFT_APP_NAME.$NOW.backup.sql.gz"
+pg_dump $OPENSHIFT_APP_NAME | gzip > $FILENAME
